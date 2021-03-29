@@ -13,9 +13,14 @@ class Funcionario():
     opcao = int(input("Escolha a opcao: "))
     return opcao
 
-    def dados_cadastrar(self):
+  def dados_cadastrar(self):
     print("-------- INCLUIR FUNCIONARIO ----------")
     nome = input("Nome: ")
     telefone = input("Telefone: ")
     endereco = input("Endereco: ")
+
+  def mostra_funcionario(self, dados_funcionario):
+    print("Nome do funcionario: ", dados_funcionario["nome"])
+    print("Telefone: ", dados_funcionario["telefone"])
+    print("Endereco: ", dados_funcionario["endereco"])
 

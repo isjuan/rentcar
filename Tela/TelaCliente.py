@@ -12,8 +12,13 @@ class TelaCliente():
     opcao = int(input("Escolha a opcao: "))
     return opcao
 
-    def dados_cadastrar(self):
+  def dados_cadastrar(self):
     print("-------- INCLUIR CLIENTE ----------")
     nome = input("Nome: ")
     telefone = input("Telefone: ")
     endereco = input("Endereco: ")
+
+  def mostra_cliente(self, dados_cliente):
+    print("Nome do cliente: ", dados_cliente["nome"])
+    print("Telefone: ", dados_cliente["telefone"])
+    print("Endereco: ", dados_cliente["endereco"])
