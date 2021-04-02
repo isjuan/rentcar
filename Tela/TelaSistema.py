@@ -13,7 +13,7 @@ class TelaSistema:
     opcao = self.le_int("Escolha a opcao: ", [1, 2, 3, 4, 0])
     return opcao
 
-  def le_int(self, mensagem: str, intervalo: [] = None)
+  def le_int(self, mensagem: str, intervalo: [] = None):
     while True:
       lido = input(mensagem)
       try:
