@@ -1,5 +1,5 @@
 class Aluguel:
-    def __init__(self, carro: Carro, cliente:Cliente, funcionario: Funcionario, data:str)
+    def __init__(self, carro: Carro, cliente: Cliente, funcionario: Funcionario, data: str)
         self.__carro = carro
         self.__cliente = cliente
         self.__funcionario = funcionario
