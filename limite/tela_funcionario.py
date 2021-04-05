@@ -4,9 +4,8 @@ class TelaFuncionario():
     print("-------- Funcionario ----------")
     print("Escolha a opcao")
     print("1 - Incluir funcionario")
-    print("2 - Alterar funcionario")
-    print("3 - Listar funcionarios")
-    print("4 - Excluir funcionario")
+    print("2 - Listar funcionarios")
+    print("3 - Excluir funcionario")
     print("0 - Retornar")
 
     opcao = self.le_int("Escolha a opcao: ", [1, 2, 3, 4, 0])
@@ -32,12 +31,20 @@ class TelaFuncionario():
     nome = input("Nome: ")
     telefone = input("Telefone: ")
     endereco = input("Endereco: ")
-    if nome != str or telefone != int or endereco != str:
-      print ("Dados invalidos! Cadastre novamente")
-      self.dados_cadastrar()
+    return {"nome": nome, "telefone": telefone, "endereco": endereco}
+    
 
-  def mostra_funcionario(self, dados_funcionario):
-    print("Nome do funcionario: ", dados_funcionario["nome"])
+  def mostrar_funcionario(self, dados_funcionario):
+    print("------------------", "\n", "Nome do funcionario: ", dados_funcionario["nome"])
     print("Telefone: ", dados_funcionario["telefone"])
     print("Endereco: ", dados_funcionario["endereco"])
 
+  def exclui_funcionario(self):
+    pc = input("Qual a nome do funcionario?")
+    return pc
+  
+  def exclui_funcionario_return(self, bol):
+    if bol == False:
+      print ("Nome invalido! Retornando a tela Funcionario")
+    if bol == True:
+      print ("Funcionario removido do cadastro!")

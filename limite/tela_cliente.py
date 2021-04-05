@@ -4,9 +4,8 @@ class TelaCliente():
     print("-------- Cliente ----------")
     print("Escolha a opcao")
     print("1 - Incluir cliente")
-    print("2 - Alterar cliente")
-    print("3 - Listar clientes")
-    print("4 - Excluir cliente")
+    print("2 - Listar clientes")
+    print("3 - Excluir cliente")
     print("0 - Retornar")
 
     opcao = self.le_int("Escolha a opcao: ", [1, 2, 3, 4, 0])
@@ -31,11 +30,20 @@ class TelaCliente():
     nome = input("Nome: ")
     telefone = input("Telefone: ")
     endereco = input("Endereco: ")
-    if nome != str or telefone != int or endereco != str:
-      print ("Dados invalidos! Cadastre novamente")
-      self.dados_cadastrar()
+    return {"nome": nome, "telefone": telefone, "endereco": endereco}
+    
 
-  def mostra_cliente(self, dados_cliente):
-    print("Nome do cliente: ", dados_cliente["nome"])
+  def mostrar_cliente(self, dados_cliente):
+    print("------------------", "\n", "Nome do cliente: ", dados_cliente["nome"])
     print("Telefone: ", dados_cliente["telefone"])
     print("Endereco: ", dados_cliente["endereco"])
+
+  def exclui_cliente(self):
+    pc = input("Qual a nome do cliente?")
+    return pc
+  
+  def exclui_cliente_return(self, bol):
+    if bol == False:
+      print ("Nome invalido! Retornando a tela Cliente")
+    if bol == True:
+      print ("Cliente removido do cadastro!")

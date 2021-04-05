@@ -17,18 +17,18 @@ class ControladorCarro:
     self.__carros.append(carro)
 
   def lista_carros(self):
-    for carro in self.__carro:
-      self.__tela_carro.mostra_carro({"placa": carro.placa, "modelo": carro.modelo, "cor": carro.cor})
+    for carro in self.__carros:
+      self.__tela_carro.mostrar_carro({"placa": carro.placa, "modelo": carro.modelo, "cor": carro.cor})
 
 
 
   def exclui_carro(self):
     pc = self.__tela_carro.exclui_carro()
     bol = False
-    for carro in self.__carro:
+    for carro in self.__carros:
       if carro.placa == pc:
         bol = True
-        self.__carro.delete(carro)
+        self.__carros.remove(carro)
         self.__tela_carro.exclui_carro_return(bol)
       
     if bol == False:
@@ -40,7 +40,6 @@ class ControladorCarro:
 
 
   def abre_tela(self):
-    #Atenção: código incompleto: adicionar funcões para todas as opções da tela
     lista_opcoes = {1: self.incluir_carro, 2: self.lista_carros, 3:self.exclui_carro, 0: self.retorna_tela_principal}
 
     continua = True

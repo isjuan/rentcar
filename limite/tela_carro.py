@@ -25,28 +25,26 @@ class TelaCarro():
         if intervalo:
           print("Valores validos:", intervalo)
 
-    def dados_cadastrar(self):
-      print("-------- INCLUIR CARRO ----------")
-      placa = input("Placa: ")
-      modelo = input("Modelo: ")
-      cor = input("Cor: ")  
-      if placa != str or modelo != str or cor != str:
-        print ("Dados invalidos! cadastre novamente")
-        self.dados_cadastrar()
-    
-    def mostra_carro(self, dados_carro):
-      print("Modelo do carro: ", dados_carro["modelo"])
-      print("Placa: ", dados_carro["placa"])
-      print("Cor: ", dados_carro["cor"])
-        
-    def exclui_carro(self):
-      pc = input("Qual a placa do carro?")
-      return pc
-    
-    def exclui_carro_return(self, bol):
-      if bol == False:
-        print ("Placa inválida")
-      if bol == True:
-        print ("Carro excluido!")
+  def dados_cadastrar(self):
+    print("-------- INCLUIR CARRO ----------")
+    placa = input("Placa: ")
+    modelo = input("Modelo: ")
+    cor = input("Cor: ")  
+    return {"placa": placa, "modelo": modelo, "cor": cor}
+  
+  def mostrar_carro(self, dados_carro):
+    print("------------------", "\n", "Modelo do carro: ", dados_carro["modelo"])
+    print("Placa: ", dados_carro["placa"])
+    print("Cor: ", dados_carro["cor"])
+      
+  def exclui_carro(self):
+    pc = input("Qual a placa do carro?")
+    return pc
+  
+  def exclui_carro_return(self, bol):
+    if bol == False:
+      print ("Placa invalida! Retornando a tela Carro")
+    if bol == True:
+      print ("Carro excluido!")
 
       
