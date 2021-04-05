@@ -4,6 +4,20 @@ class Carro:
     self.__placa = placa
     self.__modelo = modelo
     self.__cor = cor
+    self.__aluguel = []
+    self.__alugado = False
+
+  def aluga(self, aluguel, r):
+    if r == True:
+      self.__alugado = True
+      self.__aluguel.append(aluguel)
+    if r == False:
+      self.__alugado
+      self.__aluguel.remove(aluguel)
+
+  def alugado(self):
+    return self.__alugado
+
 
   @property
   def placa(self):
@@ -28,3 +42,9 @@ class Carro:
   @cor.setter
   def cor(self):
   	self.__cor = cor
+
+  def novo(self, aluguel):
+    self.__aluguel.apend(aluguel)
+
+  def remove(self, aluguel):
+    self.__aluguel.remove(aluguel)

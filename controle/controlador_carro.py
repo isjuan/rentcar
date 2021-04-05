@@ -10,7 +10,7 @@ class ControladorCarro:
     self.__controlador_sistema = controlador_sistema
     self.__carros = []
     self.__tela_carro = TelaCarro()
-
+    
 
   def incluir_carro(self):
     dados_carro = self.__tela_carro.dados_cadastrar()
@@ -41,7 +41,11 @@ class ControladorCarro:
   def retorna_tela_principal(self):
     self.__controlador_sistema.inicializa_sistema()
 
+  def aluga(self,car, aluguel, r):
+    car.aluga(aluguel,r)
 
+  def alugado(self, car):
+    return car.alugado()
 
   def abre_tela(self):
     lista_opcoes = {1: self.incluir_carro, 2: self.lista_carros, 3:self.exclui_carro, 0: self.retorna_tela_principal}

@@ -17,9 +17,10 @@ class ControladorAluguel:
 
     ca_t = False
     for ca in self.__controlador_carro.l_carros():
-      if ca.placa == dados_aluguel["carro"]:
+      if ca.placa == dados_aluguel["carro"] and self.__controlador_carro.alugado(ca) == False:
         carro = ca
         ca_t = True
+
     
     cl_t = False
     for cl in self.__controlador_cliente.l_clientes():
@@ -43,8 +44,12 @@ class ControladorAluguel:
     r = False
     if ca_t and cl_t and  fu_t == True and count == 0 :
       aluguel = Aluguel(ca, cl, fu, da)
+      self.__controlador_carro.aluga(ca,aluguel, ca_t)
       self.__alugueis.append(aluguel)
-      r = True    
+      r = True  
+
+
+
     self.__tela_aluguel.cadastro(r)
 
 
@@ -53,11 +58,14 @@ class ControladorAluguel:
       self.__tela_aluguel.mostra_aluguel({"carro": aluguel.carro, "cliente": aluguel.cliente, "funcionario": aluguel.funcionario, "data": aluguel.data})
 
   def exclui_aluguel(self):
-    pc = self.__tela_aluguel.exclui_aluguel()
+    dt = self.__tela_aluguel.exclui_aluguel()
     bol = False
     for aluguel in self.__alugueis:
-      if aluguel.data == pc:
+      if aluguel.data == dt:
         bol = True
+        car = aluguel.carro
+        car.aluga(car, aluguel, False)
+
         self.__alugueis.remove(aluguel)
         self.__tela_aluguel.exclui_aluguel_return(bol)
       

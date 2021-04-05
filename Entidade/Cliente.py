@@ -5,5 +5,11 @@ class Cliente(Pessoa):
         super().__init__(nome, telefone, endereco)
         self.__alugueis = []
 
+    def novo(self, aluguel):
+        self.__alugueis.apend(aluguel)
+
+    def remove(self, aluguel):
+        self.__alugueis.remove(aluguel)
+
 
 
