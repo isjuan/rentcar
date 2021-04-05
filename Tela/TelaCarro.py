@@ -27,7 +27,7 @@ class TelaCarro():
           print("Valores validos:", intervalo)
 
     def dados_cadastrar(self):
-      print("-------- INCLUIR FUNCIONARIO ----------")
+      print("-------- INCLUIR CARRO ----------")
       placa = input("Placa: ")
       modelo = input("Modelo: ")
       cor = input("Cor: ")  
