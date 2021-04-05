@@ -6,7 +6,7 @@ class TelaFuncionario():
     print("1 - Incluir funcionario")
     print("2 - Listar funcionarios")
     print("3 - Excluir funcionario")
-    print("3 - Ver alugueis do funcionario")
+    print("4 - Ver alugueis do funcionario")
     print("0 - Retornar")
 
     opcao = self.le_int("Escolha a opcao: ", [1, 2, 3, 4, 0])

@@ -1,9 +1,6 @@
 from limite.tela_carro import TelaCarro
 from entidade.carro import Carro
 
-from limite.tela_carro import TelaCarro
-from entidade.carro import Carro
-
 class ControladorCarro:
   
   def __init__(self, controlador_sistema):
