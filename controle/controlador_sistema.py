@@ -10,8 +10,8 @@ class ControladorSistema:
     self.__controlador_carro = ControladorCarro(self)
     self.__controlador_funcionario = ControladorFuncionario(self)
     self.__controlador_cliente = ControladorCliente(self)
-    self.__controlador_aluguel = ControladorAluguel(self)
     self.__tela_sistema = TelaSistema()
+    self.__controlador_aluguel = ControladorAluguel(self, self.__controlador_cliente, self.__controlador_funcionario, self.__controlador_carro)
 
   
     

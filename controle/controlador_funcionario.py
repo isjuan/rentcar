@@ -8,6 +8,8 @@ class ControladorFuncionario:
     self.__funcionarios = []
     self.__tela_funcionario = TelaFuncionario()
 
+  def l_funcionarios(self):
+    return self.__funcionarios
 
   def incluir_funcionario(self):
     dados_funcionario = self.__tela_funcionario.dados_cadastrar()

@@ -1,6 +1,9 @@
 from limite.tela_carro import TelaCarro
 from entidade.carro import Carro
 
+from limite.tela_carro import TelaCarro
+from entidade.carro import Carro
+
 class ControladorCarro:
   
   def __init__(self, controlador_sistema):
@@ -20,7 +23,8 @@ class ControladorCarro:
     for carro in self.__carros:
       self.__tela_carro.mostrar_carro({"placa": carro.placa, "modelo": carro.modelo, "cor": carro.cor})
 
-
+  def l_carros(self):
+    return self.__carros
 
   def exclui_carro(self):
     pc = self.__tela_carro.exclui_carro()

@@ -7,6 +7,9 @@ class ControladorCliente:
     self.__controlador_sistema = controlador_sistema
     self.__clientes = []
     self.__tela_cliente = TelaCliente()
+  
+  def l_clientes(self):
+    return self.__clientes
 
 
   def incluir_cliente(self):
