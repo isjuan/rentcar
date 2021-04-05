@@ -11,6 +11,20 @@ class ControladorCliente:
   def l_clientes(self):
     return self.__clientes
 
+  def novo(self,cliente, aluguel):
+    cliente.novo(aluguel)
+
+  def remove(self,cliente, aluguel):
+    cliente.remove(aluguel)
+  
+  def lista_alugueis(self):
+    pc = self.__tela_cliente.exclui_cliente()
+    for cliente in self.__clientes:
+      if cliente.nome == pc:
+        lista = cliente.lista()
+        self.__tela_cliente.lista_alugueis(lista)
+
+
 
   def incluir_cliente(self):
     dados_cliente = self.__tela_cliente.dados_cadastrar()
@@ -43,7 +57,7 @@ class ControladorCliente:
 
 
   def abre_tela(self):
-    lista_opcoes = {1: self.incluir_cliente, 2: self.lista_clientes, 3:self.exclui_cliente, 0: self.retorna_tela_principal}
+    lista_opcoes = {1: self.incluir_cliente, 2: self.lista_clientes, 3:self.exclui_cliente, 4:self.lista_alugueis, 0: self.retorna_tela_principal}
 
     continua = True
     while continua:

@@ -6,7 +6,12 @@ class Funcionario(Pessoa):
         self.__alugueis = []
 
     def novo(self, aluguel):
-        self.__alugueis.apend(aluguel)
+        self.__alugueis.append(aluguel)
 
     def remove(self, aluguel):
         self.__alugueis.remove(aluguel)
+
+    def lista(self):
+        return self.__alugueis
+
+    

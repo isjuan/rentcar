@@ -6,6 +6,7 @@ class TelaCliente():
     print("1 - Incluir cliente")
     print("2 - Listar clientes")
     print("3 - Excluir cliente")
+    print("4 - Lista alugueis do cliente")
     print("0 - Retornar")
 
     opcao = self.le_int("Escolha a opcao: ", [1, 2, 3, 4, 0])
@@ -47,3 +48,9 @@ class TelaCliente():
       print ("Nome invalido! Retornando a tela Cliente")
     if bol == True:
       print ("Cliente removido do cadastro!")
+
+  def lista_alugueis(self, lis: list):
+    if len(lis) == 0:
+      print ("Erro!")
+    else:
+      print ("Os alugueis desse cliente são:", lis)

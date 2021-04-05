@@ -6,6 +6,7 @@ class TelaFuncionario():
     print("1 - Incluir funcionario")
     print("2 - Listar funcionarios")
     print("3 - Excluir funcionario")
+    print("3 - Ver alugueis do funcionario")
     print("0 - Retornar")
 
     opcao = self.le_int("Escolha a opcao: ", [1, 2, 3, 4, 0])
@@ -48,3 +49,9 @@ class TelaFuncionario():
       print ("Nome invalido! Retornando a tela Funcionario")
     if bol == True:
       print ("Funcionario removido do cadastro!")
+
+  def lista_alugueis(self, lis: list):
+    if len(lis) == 0:
+      print ("Erro!")
+    else:
+      print ("Os alugueis desse funcionario são:", lis)

@@ -11,6 +11,19 @@ class ControladorFuncionario:
   def l_funcionarios(self):
     return self.__funcionarios
 
+  def lista_alugueis(self):
+    pc = self.__tela_funcionario.exclui_funcionario()
+    for funcionario in self.__funcionarios:
+      if funcionario.nome == pc:
+        lista = funcionario.lista()
+        self.__tela_funcionario.lista_alugueis(lista)
+
+  def novo(self,funcionario, aluguel):
+    funcionario.novo(aluguel)
+
+  def remove(self,funcionario, aluguel):
+    funcionario.remove(aluguel)
+
   def incluir_funcionario(self):
     dados_funcionario = self.__tela_funcionario.dados_cadastrar()
 
@@ -42,7 +55,7 @@ class ControladorFuncionario:
 
 
   def abre_tela(self):
-    lista_opcoes = {1: self.incluir_funcionario, 2: self.lista_funcionarios, 3:self.exclui_funcionario, 0: self.retorna_tela_principal}
+    lista_opcoes = {1: self.incluir_funcionario, 2: self.lista_funcionarios, 3:self.exclui_funcionario, 4: self.lista_alugueis, 0: self.retorna_tela_principal}
 
     continua = True
     while continua:

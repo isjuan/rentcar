@@ -44,7 +44,11 @@ class ControladorAluguel:
     r = False
     if ca_t and cl_t and  fu_t == True and count == 0 :
       aluguel = Aluguel(ca, cl, fu, da)
+
       self.__controlador_carro.aluga(ca,aluguel, ca_t)
+      self.__controlador_cliente.novo(cl, aluguel)
+      self.__controlador_funcionario.novo(fu, aluguel)
+
       self.__alugueis.append(aluguel)
       r = True  
 
@@ -64,7 +68,7 @@ class ControladorAluguel:
       if aluguel.data == dt:
         bol = True
         car = aluguel.carro
-        car.aluga(car, aluguel, False)
+        car.aluga(aluguel, False)
 
         self.__alugueis.remove(aluguel)
         self.__tela_aluguel.exclui_aluguel_return(bol)
