@@ -5,9 +5,8 @@ class TelaCarro():
     print("-------- Carro ----------")
     print("Escolha a opcao")
     print("1 - Incluir carro")
-    print("2 - Alterar carro")
-    print("3 - Listar carros")
-    print("4 - Excluir carro")
+    print("2 - Listar carros")
+    print("3 - Excluir carro")
     print("0 - Retornar")
 
     opcao = self.le_int("Escolha a opcao: ", [1, 2, 3, 4, 0])
@@ -40,3 +39,14 @@ class TelaCarro():
       print("Placa: ", dados_carro["placa"])
       print("Cor: ", dados_carro["cor"])
         
+    def exclui_carro(self):
+      pc = input("Qual a placa do carro?")
+      return pc
+    
+    def exclui_carro_return(self, bol):
+      if bol == False:
+        print ("Placa inválida")
+      if bol == True:
+        print ("Carro excluido!")
+
+      

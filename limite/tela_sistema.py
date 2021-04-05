@@ -2,7 +2,7 @@
 class TelaSistema:
   
   def tela_opcoes(self):
-    print("-------- Aluguel ---------")
+    print("-------- Sistema ---------")
     print("Escolha sua opcao")
     print("1 - Cliente")
     print("2 - Funcionario")

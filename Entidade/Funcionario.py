@@ -1,4 +1,4 @@
-from pessoa import Pessoa
+from entidade.pessoa import Pessoa
 
 class Funcionario(Pessoa):
     def __init__(self, nome: str, telefone: int, endereco: str):

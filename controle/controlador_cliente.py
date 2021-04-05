@@ -1,5 +1,5 @@
-from Tela.TelaCliente import TelaCliente
-from Entidade.Cliente import Cliente
+from limite.tela_cliente import TelaCliente
+from entidade.cliente import Cliente
 
 class ControladorCliente:
 

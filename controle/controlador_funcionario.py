@@ -1,5 +1,5 @@
-from Tela.TelaFuncionario import TelaFuncionario
-from Entidade.Funcionario import Funcionario
+from limite.tela_funcionario import TelaFuncionario
+from entidade.funcionario import Funcionario
 
 class ControladorFuncionario:
   

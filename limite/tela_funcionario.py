@@ -1,4 +1,4 @@
-class Funcionario():
+class TelaFuncionario():
 
   def tela_opcoes(self):
     print("-------- Funcionario ----------")
