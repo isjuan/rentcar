@@ -14,13 +14,14 @@ class ControladorAluguel:
 
   def incluir_aluguel(self):
     dados_aluguel = self.__tela_aluguel.dados_cadastrar()
-
-    ca_t = False
+    #em carro, cliente, funcionario, criar metodo no controlador para buscar pelo indentificador
+    carro_ja_alugado = False
     for ca in self.__controlador_carro.l_carros():
       if ca.placa == dados_aluguel["carro"] and self.__controlador_carro.alugado(ca) == False:
         carro = ca
-        ca_t = True
-
+        carro_ja_alugado = True
+      #mandar tela mostrar mensagem se der erro
+      #break
     
     cl_t = False
     for cl in self.__controlador_cliente.l_clientes():
@@ -42,10 +43,10 @@ class ControladorAluguel:
       da = dados_aluguel["data"]
 
     r = False
-    if ca_t and cl_t and  fu_t == True and count == 0 :
+    if carro_ja_alugado and cl_t and  fu_t == True and count == 0 :
       aluguel = Aluguel(ca, cl, fu, da)
 
-      self.__controlador_carro.aluga(ca,aluguel, ca_t)
+      self.__controlador_carro.aluga(ca,aluguel, carro_ja_alugado)
       self.__controlador_cliente.novo(cl, aluguel)
       self.__controlador_funcionario.novo(fu, aluguel)
 
