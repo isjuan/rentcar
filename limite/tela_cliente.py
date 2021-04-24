@@ -40,8 +40,8 @@ class TelaCliente():
     print("Endereco: ", dados_cliente["endereco"])
 
   def exclui_cliente(self):
-    pc = input("Qual a nome do cliente?")
-    return pc
+    nome = input("Qual a nome do cliente?")
+    return nome
   
   def exclui_cliente_return(self, bol):
     if bol == False:

@@ -40,16 +40,16 @@ class ControladorCliente:
 
 
   def exclui_cliente(self):
-    pc = self.__tela_cliente.exclui_cliente()
-    bol = False
+    nome = self.__tela_cliente.exclui_cliente()
+    verificador = False
     for cliente in self.__clientes:
-      if cliente.nome == pc:
-        bol = True
+      if cliente.nome == nome:
+        verificador = True
         self.__clientes.remove(cliente)
-        self.__tela_cliente.exclui_cliente_return(bol)
+        self.__tela_cliente.exclui_cliente_return(verificador)
       
-    if bol == False:
-        self.__tela_cliente.exclui_cliente_return(bol)
+    if verificador == False:
+        self.__tela_cliente.exclui_cliente_return(verificador)
 
   def retorna_tela_principal(self):
     self.__controlador_sistema.inicializa_sistema()

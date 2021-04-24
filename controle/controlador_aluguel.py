@@ -16,46 +16,46 @@ class ControladorAluguel:
     dados_aluguel = self.__tela_aluguel.dados_cadastrar()
     #em carro, cliente, funcionario, criar metodo no controlador para buscar pelo indentificador
     carro_ja_alugado = False
-    for ca in self.__controlador_carro.l_carros():
-      if ca.placa == dados_aluguel["carro"] and self.__controlador_carro.alugado(ca) == False:
-        carro = ca
+    for carro in self.__controlador_carro.l_carros():
+      if carro.placa == dados_aluguel["carro"] and self.__controlador_carro.alugado(carro) == False:
+        carro_certo = carro
         carro_ja_alugado = True
       #mandar tela mostrar mensagem se der erro
       #break
     
-    cl_t = False
-    for cl in self.__controlador_cliente.l_clientes():
-      if cl.nome == dados_aluguel["cliente"]:
-        cliente = cl
-        cl_t = True
+    cliente_valido = False
+    for cliente in self.__controlador_cliente.l_clientes():
+      if cliente.nome == dados_aluguel["cliente"]:
+        cliente_certo = cliente
+        cliente_valido = True
 
-    fu_t = False
-    for fu in self.__controlador_funcionario.l_funcionarios():
-      if fu.nome == dados_aluguel["funcionario"]:
-        funcionario = fu
-        fu_t = True
+    funcionario_valido = False
+    for funcionario in self.__controlador_funcionario.l_funcionarios():
+      if funcionario.nome == dados_aluguel["funcionario"]:
+        funcionario_certo = funcionario
+        funcionario_valido = True
   
     count = 0
-    for i in self.__alugueis:
-      if i.data == dados_aluguel["data"]:
+    for codigo in self.__alugueis:
+      if codigo.data == dados_aluguel["data"]:
         count = count + 1
     if count == 0: 
-      da = dados_aluguel["data"]
+      codigo_certo = dados_aluguel["data"]
 
-    r = False
-    if carro_ja_alugado and cl_t and  fu_t == True and count == 0 :
-      aluguel = Aluguel(ca, cl, fu, da)
+    verificador = False
+    if carro_ja_alugado and cliente_valido and  funcionario_valido == True and count == 0 :
+      aluguel = Aluguel(carro_certo, cliente_certo, funcionario_certo, codigo_certo)
 
-      self.__controlador_carro.aluga(ca,aluguel, carro_ja_alugado)
-      self.__controlador_cliente.novo(cl, aluguel)
-      self.__controlador_funcionario.novo(fu, aluguel)
+      self.__controlador_carro.aluga(carro_certo,aluguel, carro_ja_alugado)
+      self.__controlador_cliente.novo(cliente, aluguel)
+      self.__controlador_funcionario.novo(funcionario, aluguel)
 
       self.__alugueis.append(aluguel)
-      r = True  
+      verificador = True  
 
 
 
-    self.__tela_aluguel.cadastro(r)
+    self.__tela_aluguel.cadastro(verificador)
 
 
   def lista_alugueis(self):
@@ -63,19 +63,19 @@ class ControladorAluguel:
       self.__tela_aluguel.mostra_aluguel({"carro": aluguel.carro, "cliente": aluguel.cliente, "funcionario": aluguel.funcionario, "data": aluguel.data})
 
   def exclui_aluguel(self):
-    dt = self.__tela_aluguel.exclui_aluguel()
-    bol = False
+    codigo = self.__tela_aluguel.exclui_aluguel()
+    verificador = False
     for aluguel in self.__alugueis:
-      if aluguel.data == dt:
-        bol = True
-        car = aluguel.carro
-        car.aluga(aluguel, False)
+      if aluguel.data == codigo:
+        verificador = True
+        carro = aluguel.carro
+        carro.aluga(aluguel, False)
 
         self.__alugueis.remove(aluguel)
-        self.__tela_aluguel.exclui_aluguel_return(bol)
+        self.__tela_aluguel.exclui_aluguel_return(verificador)
       
-    if bol == False:
-        self.__tela_aluguel.exclui_aluguel_return(bol)
+    if verificador == False:
+        self.__tela_aluguel.exclui_aluguel_return(verificador)
 
   def retorna_tela_principal(self):
     self.__controlador_sistema.inicializa_sistema()

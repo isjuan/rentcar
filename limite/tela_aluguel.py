@@ -41,8 +41,8 @@ class TelaAluguel():
 
       
   def exclui_aluguel(self):
-    pc = input("Qual o codigo do aluguel?")
-    return pc
+    codigo = input("Qual o codigo do aluguel?")
+    return codigo
   
   def exclui_aluguel_return(self, bol):
     if bol == False:
@@ -50,8 +50,8 @@ class TelaAluguel():
     if bol == True:
       print ("Aluguel terminado!")
 
-  def cadastro(self, r):
-    if r == False:
+  def cadastro(self, verificador):
+    if verificador == False:
       print ("Erro no cadastro! Retornando a tela Aluguel")
-    if r == True:
+    if verificador == True:
       print ("Aluguel criado")

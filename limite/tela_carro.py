@@ -38,8 +38,8 @@ class TelaCarro():
     print("Cor: ", dados_carro["cor"])
       
   def exclui_carro(self):
-    pc = input("Qual a placa do carro?")
-    return pc
+    placa = input("Qual a placa do carro?")
+    return placa
   
   def exclui_carro_return(self, bol):
     if bol == False:
