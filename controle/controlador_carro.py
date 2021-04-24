@@ -25,15 +25,15 @@ class ControladorCarro:
 
   def exclui_carro(self):
     placa = self.__tela_carro.exclui_carro()
-    verificador = False
+    verificador = 0
     for carro in self.__carros:
       if carro.placa == placa:
-        verificador = True
-        self.__carros.remove(carro)
-        self.__tela_carro.exclui_carro_return(verificador)
-      
-    if verificador == False:
-        self.__tela_carro.exclui_carro_return(verificador)
+        if carro.alugado() == False:
+          verificador = 2
+          self.__carros.remove(carro)
+        if carro.alugado() == True:
+          verificador = 1
+    self.__tela_carro.exclui_carro_return(verificador)
 
   def retorna_tela_principal(self):
     self.__controlador_sistema.inicializa_sistema()

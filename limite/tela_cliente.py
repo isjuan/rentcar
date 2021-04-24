@@ -46,10 +46,10 @@ class TelaCliente():
   def exclui_cliente_return(self, verificador):
     if verificador == 0:
       print ("Nome invalido! Retornando a tela Cliente")
-    if verificador == 2:
-      print ("Cliente removido do cadastro!")
     if verificador == 1:
       print ("O cliente tem um aluguel ativo! Falha ao remover.")
+    if verificador == 2:
+      print ("Cliente removido do cadastro!")
 
   def lista_alugueis(self, lis: list):
     if len(lis) == 0:

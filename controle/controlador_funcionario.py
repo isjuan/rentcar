@@ -39,15 +39,15 @@ class ControladorFuncionario:
 
   def exclui_funcionario(self):
     nome = self.__tela_funcionario.exclui_funcionario()
-    verificador = False
+    verificador = 0
     for funcionario in self.__funcionarios:
       if funcionario.nome == nome:
-        verificador = True
-        self.__funcionarios.remove(funcionario)
-        self.__tela_funcionario.exclui_funcionario_return(verificador)
-      
-    if verificador == False:
-        self.__tela_funcionario.exclui_funcionario_return(verificador)
+        if len(funcionario.lista()) == 0:
+          verificador = 2
+          self.__funcionarios.remove(funcionario)
+        if len(funcionario.lista()) > 0:
+          verificador = 1
+    self.__tela_funcionario.exclui_funcionario_return(verificador)
 
   def retorna_tela_principal(self):
     self.__controlador_sistema.inicializa_sistema()

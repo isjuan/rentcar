@@ -41,10 +41,12 @@ class TelaCarro():
     placa = input("Qual a placa do carro?")
     return placa
   
-  def exclui_carro_return(self, bol):
-    if bol == False:
-      print ("Placa invalida! Retornando a tela Carro")
-    if bol == True:
-      print ("Carro excluido!")
+  def exclui_carro_return(self, verificador):
+    if verificador == 0:
+      print ("Nome invalido! Retornando a tela Carro")
+    if verificador == 1:
+      print ("O carro está em um aluguel ativo! Falha ao remover.")
+    if verificador == 2:
+      print ("Carro removido do cadastro!")
 
       

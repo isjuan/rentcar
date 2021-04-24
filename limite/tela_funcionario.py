@@ -41,13 +41,15 @@ class TelaFuncionario():
     print("Endereco: ", dados_funcionario["endereco"])
 
   def exclui_funcionario(self):
-    pc = input("Qual a nome do funcionario?")
-    return pc
+    nome = input("Qual a nome do funcionario?")
+    return nome
   
-  def exclui_funcionario_return(self, bol):
-    if bol == False:
+  def exclui_funcionario_return(self, verificador):
+    if verificador == 0:
       print ("Nome invalido! Retornando a tela Funcionario")
-    if bol == True:
+    if verificador == 1:
+      print ("O funcionario tem um aluguel ativo! Falha ao remover.")
+    if verificador == 2:
       print ("Funcionario removido do cadastro!")
 
   def lista_alugueis(self, lis: list):
