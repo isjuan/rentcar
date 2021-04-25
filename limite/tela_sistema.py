@@ -1,6 +1,34 @@
+import PySimpleGUI as sg
+
+class TelaSistema():
+
+    def __init__(self):
+        self.__window = None
+        self.init_components()
+
+    def init_components(self):
+        layout = [[sg.Button('Cliente', key='1', size=(20, 1))],
+                  [sg.Button('Funcionario', key='2', size=(20, 1))],
+                  [sg.Button('Carro', key='3', size=(20, 1))],
+                  [sg.Button('Aluguel', key='4', size=(20, 1))],
+                  [sg.Button('Finalizar sistema', key='0', size=(20, 1))],
+                  ]
+        self.__window = sg.Window('HOME').Layout(layout)
+
+    def tela_opcoes(self):
+        self.init_components()
+        botao, valores = self.__window.Read()
+        if botao is None:
+            botao = 0
+        return int(botao)
+
+    def close(self):
+        self.__window.close()
+
+''' 
 
 class TelaSistema:
-  
+
   def tela_opcoes(self):
     print("-------- Sistema ---------")
     print("Escolha sua opcao")
@@ -25,3 +53,5 @@ class TelaSistema:
         print ("Valor incorreto: Digite um valor valido")
         if intervalo:
           print("Valores validos:", intervalo)
+          
+'''
