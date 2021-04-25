@@ -39,7 +39,7 @@ class TelaCliente():
     print("Telefone: ", dados_cliente["telefone"])
     print("Endereco: ", dados_cliente["endereco"])
 
-  def exclui_cliente(self):
+  def retorna_cliente(self):
     nome = input("Qual a nome do cliente?")
     return nome
   
@@ -53,6 +53,6 @@ class TelaCliente():
 
   def lista_alugueis(self, lis: list):
     if len(lis) == 0:
-      print ("Erro!")
+      print ("O cliente não tem alugueis!")
     else:
       print ("Os alugueis desse cliente são:", lis)

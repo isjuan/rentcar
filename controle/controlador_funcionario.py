@@ -12,9 +12,9 @@ class ControladorFuncionario:
     return self.__funcionarios
 
   def lista_alugueis(self):
-    pc = self.__tela_funcionario.exclui_funcionario()
+    nome = self.__tela_funcionario.retorna_funcionario()
     for funcionario in self.__funcionarios:
-      if funcionario.nome == pc:
+      if funcionario.nome == nome:
         lista = funcionario.lista()
         self.__tela_funcionario.lista_alugueis(lista)
 
@@ -38,7 +38,7 @@ class ControladorFuncionario:
 
 
   def exclui_funcionario(self):
-    nome = self.__tela_funcionario.exclui_funcionario()
+    nome = self.__tela_funcionario.retorna_funcionario()
     verificador = 0
     for funcionario in self.__funcionarios:
       if funcionario.nome == nome:

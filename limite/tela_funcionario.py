@@ -40,7 +40,7 @@ class TelaFuncionario():
     print("Telefone: ", dados_funcionario["telefone"])
     print("Endereco: ", dados_funcionario["endereco"])
 
-  def exclui_funcionario(self):
+  def retorna_funcionario(self):
     nome = input("Qual a nome do funcionario?")
     return nome
   
@@ -54,6 +54,6 @@ class TelaFuncionario():
 
   def lista_alugueis(self, lis: list):
     if len(lis) == 0:
-      print ("Erro!")
+      print ("O funcionario não tem alugueis!")
     else:
       print ("Os alugueis desse funcionario são:", lis)

@@ -68,8 +68,9 @@ class ControladorAluguel:
     for aluguel in self.__alugueis:
       if aluguel.data == codigo:
         verificador = True
-        carro = aluguel.carro
-        carro.aluga(aluguel, False)
+        self.__controlador_carro.aluga(aluguel.carro,aluguel, False)
+        self.__controlador_cliente.remove(aluguel.cliente, aluguel)
+        self.__controlador_funcionario.remove(aluguel.funcionario, aluguel)
 
         self.__alugueis.remove(aluguel)
         self.__tela_aluguel.exclui_aluguel_return(verificador)

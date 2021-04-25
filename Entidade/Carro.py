@@ -7,12 +7,12 @@ class Carro:
     self.__aluguel = []
     self.__alugado = False
 
-  def aluga(self, aluguel, bool):
-    if bool == True:
+  def aluga(self, aluguel, bol):
+    if bol == True:
       self.__alugado = True
       self.__aluguel.append(aluguel)
-    if bool == False:
-      self.__alugado
+    if bol == False:
+      self.__alugado = False
       self.__aluguel.remove(aluguel)
 
   def alugado(self):

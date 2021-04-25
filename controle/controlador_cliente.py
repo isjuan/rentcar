@@ -18,9 +18,9 @@ class ControladorCliente:
     cliente.remove(aluguel)
   
   def lista_alugueis(self):
-    pc = self.__tela_cliente.exclui_cliente()
+    nome = self.__tela_cliente.retorna_cliente()
     for cliente in self.__clientes:
-      if cliente.nome == pc:
+      if cliente.nome == nome:
         lista = cliente.lista()
         self.__tela_cliente.lista_alugueis(lista)
 
@@ -40,7 +40,7 @@ class ControladorCliente:
 
 
   def exclui_cliente(self):
-    nome = self.__tela_cliente.exclui_cliente()
+    nome = self.__tela_cliente.retorna_cliente()
     verificador = 0
     for cliente in self.__clientes:
       if cliente.nome == nome:
