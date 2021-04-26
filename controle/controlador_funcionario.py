@@ -28,6 +28,9 @@ class ControladorFuncionario:
       funcionario_certo = 0
     return funcionario_certo, funcionario_verificador
 
+  def aluguel_erro(self):
+    self.__tela_funcionario.aluguel_erro()
+
   def novo(self,funcionario, aluguel):
     funcionario.novo(aluguel)
 

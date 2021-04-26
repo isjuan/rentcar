@@ -57,3 +57,6 @@ class TelaFuncionario():
       print ("O funcionario não tem alugueis!")
     else:
       print ("Os alugueis desse funcionario são:", lis)
+
+  def aluguel_erro(self):
+    print ("O nome do funcionario informado nao foi encontrado!")

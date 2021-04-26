@@ -49,4 +49,10 @@ class TelaCarro():
     if verificador == 2:
       print ("Carro removido do cadastro!")
 
+  def aluguel_erro(self, carro_verificador):
+    if carro_verificador == 0:
+      print ("O carro informado nao foi encontrado!")
+    if carro_verificador == 1:
+      print ("O carro informado ja esta alugado!")
+
       

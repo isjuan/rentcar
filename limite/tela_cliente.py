@@ -56,3 +56,6 @@ class TelaCliente():
       print ("O cliente não tem alugueis!")
     else:
       print ("Os alugueis desse cliente são:", lis)
+  
+  def aluguel_erro(self):
+    print ("O nome do cliente informado nao foi encontrado!")

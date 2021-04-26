@@ -34,6 +34,8 @@ class ControladorCliente:
       cliente_certo = 0
     return cliente_certo, cliente_verificador
 
+  def aluguel_erro(self):
+    self.__tela_cliente.aluguel_erro()
 
   def incluir_cliente(self):
     dados_cliente = self.__tela_cliente.dados_cadastrar()

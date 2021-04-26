@@ -44,6 +44,9 @@ class TelaAluguel():
     codigo = input("Qual o codigo do aluguel?")
     return codigo
   
+  def aluguel_erro(self):
+    print ("O codigo do aluguel ja esta sendo utilizado!")
+
   def exclui_aluguel_return(self, bol):
     if bol == False:
       print ("Codigo invalido! Retornando a tela Aluguel")

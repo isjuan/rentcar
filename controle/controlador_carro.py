@@ -36,6 +36,8 @@ class ControladorCarro:
       carro_certo = 0
     return carro_certo, carro_verificador
 
+  def aluguel_erro(self, carro_verificador):
+    self.__tela_carro.aluguel_erro(carro_verificador)
 
   def exclui_carro(self):
     placa = self.__tela_carro.exclui_carro()

@@ -26,18 +26,14 @@ class ControladorAluguel:
     nome = dados_aluguel["funcionario"]
     funcionario_certo, funcionario_verificador = self.__controlador_funcionario.aluguel(nome)   
   
-    count = 0
-    for codigo in self.__alugueis:
-      if codigo.data == dados_aluguel["data"]:
-        count = count + 1
-    if count == 0: 
-      codigo_certo = dados_aluguel["data"]
+    identificador = dados_aluguel["data"]
+    codigo_certo, codigo_verificador = self.codigo_aluguel(identificador)
 
-    verificador = False
+    aluguel_verificador = False
 
     if carro_verificador == 2:
-      carro_ja_alugado = True
-      if cliente_verificador and  funcionario_verificador == True and count == 0:        
+      carro_ja_alugado = True #true = carro nao alugado
+      if cliente_verificador and  funcionario_verificador == True and codigo_verificador == 0:        
           aluguel = Aluguel(carro_certo, cliente_certo, funcionario_certo, codigo_certo)
 
           self.__controlador_carro.aluga(carro_certo,aluguel, carro_ja_alugado)
@@ -45,11 +41,31 @@ class ControladorAluguel:
           self.__controlador_funcionario.novo(funcionario_certo, aluguel)
 
           self.__alugueis.append(aluguel)
-          verificador = True  
+          aluguel_verificador = True
+
+    self.aluguel_verificadores(cliente_verificador, funcionario_verificador, carro_verificador,codigo_verificador,  aluguel_verificador)
+
+  def aluguel_verificadores(self, cliente_verificador, funcionario_verificador, carro_verificador, codigo_verificador, aluguel_verificador):
+    if cliente_verificador == False:
+      self.__controlador_cliente.aluguel_erro()
+    if funcionario_verificador == False:
+      self.__controlador_funcionario.aluguel_erro()
+    if carro_verificador < 2:
+      self.__controlador_carro.aluguel_erro(carro_verificador)   
+    if codigo_verificador != 0:
+      self.__tela_aluguel.aluguel_erro()
+    self.__tela_aluguel.cadastro(aluguel_verificador)
 
 
-
-    self.__tela_aluguel.cadastro(verificador)
+  def codigo_aluguel(self, identificador):
+    codigo_verificador = 0
+    codigo_certo = 0
+    for codigo in self.__alugueis:
+      if codigo.data == identificador:
+        codigo_verificador = codigo_verificador + 1
+    if codigo_verificador == 0: 
+      codigo_certo = identificador
+    return codigo_certo, codigo_verificador
 
 
   def lista_alugueis(self):
