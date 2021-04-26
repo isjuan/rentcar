@@ -14,26 +14,17 @@ class ControladorAluguel:
 
   def incluir_aluguel(self):
     dados_aluguel = self.__tela_aluguel.dados_cadastrar()
-    #em carro, cliente, funcionario, criar metodo no controlador para buscar pelo indentificador
-    carro_ja_alugado = False
-    for carro in self.__controlador_carro.l_carros():
-      if carro.placa == dados_aluguel["carro"] and self.__controlador_carro.alugado(carro) == False:
-        carro_certo = carro
-        carro_ja_alugado = True
-      #mandar tela mostrar mensagem se der erro
-      #break
-    
-    cliente_valido = False
-    for cliente in self.__controlador_cliente.l_clientes():
-      if cliente.nome == dados_aluguel["cliente"]:
-        cliente_certo = cliente
-        cliente_valido = True
 
-    funcionario_valido = False
-    for funcionario in self.__controlador_funcionario.l_funcionarios():
-      if funcionario.nome == dados_aluguel["funcionario"]:
-        funcionario_certo = funcionario
-        funcionario_valido = True
+    placa = dados_aluguel["carro"]
+    carro_certo, carro_verificador = self.__controlador_carro.aluguel(placa)   
+
+    
+    nome = dados_aluguel["cliente"]
+    cliente_certo, cliente_verificador = self.__controlador_cliente.aluguel(nome)   
+
+
+    nome = dados_aluguel["funcionario"]
+    funcionario_certo, funcionario_verificador = self.__controlador_funcionario.aluguel(nome)   
   
     count = 0
     for codigo in self.__alugueis:
@@ -43,15 +34,18 @@ class ControladorAluguel:
       codigo_certo = dados_aluguel["data"]
 
     verificador = False
-    if carro_ja_alugado and cliente_valido and  funcionario_valido == True and count == 0 :
-      aluguel = Aluguel(carro_certo, cliente_certo, funcionario_certo, codigo_certo)
 
-      self.__controlador_carro.aluga(carro_certo,aluguel, carro_ja_alugado)
-      self.__controlador_cliente.novo(cliente, aluguel)
-      self.__controlador_funcionario.novo(funcionario, aluguel)
+    if carro_verificador == 2:
+      carro_ja_alugado = True
+      if cliente_verificador and  funcionario_verificador == True and count == 0:        
+          aluguel = Aluguel(carro_certo, cliente_certo, funcionario_certo, codigo_certo)
 
-      self.__alugueis.append(aluguel)
-      verificador = True  
+          self.__controlador_carro.aluga(carro_certo,aluguel, carro_ja_alugado)
+          self.__controlador_cliente.novo(cliente_certo, aluguel)
+          self.__controlador_funcionario.novo(funcionario_certo, aluguel)
+
+          self.__alugueis.append(aluguel)
+          verificador = True  
 
 
 

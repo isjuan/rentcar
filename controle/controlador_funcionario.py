@@ -18,6 +18,16 @@ class ControladorFuncionario:
         lista = funcionario.lista()
         self.__tela_funcionario.lista_alugueis(lista)
 
+  def aluguel(self, nome_certa):
+    funcionario_verificador  = False
+    for funcionario in self.l_funcionarios():
+      if funcionario.nome == nome_certa:
+        funcionario_certo = funcionario
+        funcionario_verificador = True
+    if funcionario_verificador == False:
+      funcionario_certo = 0
+    return funcionario_certo, funcionario_verificador
+
   def novo(self,funcionario, aluguel):
     funcionario.novo(aluguel)
 

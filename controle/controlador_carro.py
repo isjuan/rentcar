@@ -23,15 +23,29 @@ class ControladorCarro:
   def l_carros(self):
     return self.__carros
 
+  def aluguel(self, placa_certa):
+    carro_verificador  = 0
+    for carro in self.l_carros():
+      if carro.placa == placa_certa:
+        carro_certo = carro
+        carro_verificador = 2
+        if carro_certo.alugado() == True:
+          carro_verificador = 1
+          carro_certo = 0
+    if carro_verificador != 2:
+      carro_certo = 0
+    return carro_certo, carro_verificador
+
+
   def exclui_carro(self):
     placa = self.__tela_carro.exclui_carro()
     verificador = 0
     for carro in self.__carros:
       if carro.placa == placa:
-        if carro.alugado() == False:
+        if self.alugado(carro) == False:
           verificador = 2
           self.__carros.remove(carro)
-        if carro.alugado() == True:
+        if self.alugado(carro) == True:
           verificador = 1
     self.__tela_carro.exclui_carro_return(verificador)
 
@@ -41,8 +55,8 @@ class ControladorCarro:
   def aluga(self,car, aluguel, r):
     car.aluga(aluguel,r)
 
-  def alugado(self, car):
-    return car.alugado()
+  def alugado(self, carro):
+    return carro.alugado()
 
   def abre_tela(self):
     lista_opcoes = {1: self.incluir_carro, 2: self.lista_carros, 3:self.exclui_carro, 0: self.retorna_tela_principal}

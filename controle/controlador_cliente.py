@@ -24,6 +24,15 @@ class ControladorCliente:
         lista = cliente.lista()
         self.__tela_cliente.lista_alugueis(lista)
 
+  def aluguel(self, nome_certa):
+    cliente_verificador  = False
+    for cliente in self.l_clientes():
+      if cliente.nome == nome_certa:
+        cliente_certo = cliente
+        cliente_verificador = True
+    if cliente_verificador == False:
+      cliente_certo = 0
+    return cliente_certo, cliente_verificador
 
 
   def incluir_cliente(self):
