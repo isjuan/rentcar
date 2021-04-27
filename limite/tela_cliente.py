@@ -1,3 +1,44 @@
+import PySimpleGUI as sg
+
+class TelaCliente():
+
+  def __init__(self):
+    self.__window = None
+    self.init_components()
+
+  def init_components(self):
+    layout = [[sg.Listbox(values=('cliente 1', 'cliente 2', 'cliente3'), size=(30, 3))],
+              [sg.Button('Incluir cliente', key='1', size=(15, 2)),
+               sg.Button('Excluir cliente', key='3', size=(15, 2))],
+              [sg.Button('Listar alugueis do cliente', key='4', size=(30, 1))],
+              [sg.Button('<< Retornar <<', key='0', size=(15, 1))],
+              ]
+    self.__window = sg.Window('Clientes').Layout(layout)
+
+  def tela_opcoes(self):
+    self.init_components()
+    botao, valores = self.__window.Read()
+    if botao is None:
+      botao = 0
+    return int(botao)
+
+  def dados_cadastrar(self):
+
+    layout= [[sg.InputText('Nome', key= 'nome')],
+             [sg.InputText('Endereco', key='endereco')],
+             [sg.InputText('Telefone', key='telefone')],
+             [sg.Submit('Cadastrar'), sg.Cancel('Cancelar')]
+    ]
+    self.__window = sg.Window('Cadastrar cliente').Layout(layout)
+
+    botao, valores = self.__window.Read()
+
+    return({"nome": valores['nome'], "telefone": valores['telefone'], "endereco": valores['endereco']})
+
+  def close(self):
+    self.__window.close()
+
+"""
 class TelaCliente():
 
   def tela_opcoes(self):
@@ -59,3 +100,4 @@ class TelaCliente():
   
   def aluguel_erro(self):
     print ("O nome do cliente informado nao foi encontrado!")
+"""
