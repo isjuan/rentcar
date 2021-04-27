@@ -13,7 +13,7 @@ class TelaCliente():
               [sg.Button('Listar alugueis do cliente', key='4', size=(30, 1))],
               [sg.Button('<< Retornar <<', key='0', size=(15, 1))],
               #BOTAO TESTE PARA VERIFICAR CLIENTES CADASTRADOS:
-              [sg.Button('test-Lista clientes', key='4', size=(15, 2))]
+              [sg.Button('test-Lista clientes', key='2', size=(15, 2))]
               ]
     self.__window = sg.Window('Clientes').Layout(layout)
 
