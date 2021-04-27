@@ -7,7 +7,7 @@ class TelaCliente():
     self.init_components()
 
   def init_components(self):
-    layout = [[sg.Listbox(values=('cliente 1', 'cliente 2', 'cliente3'), size=(30, 3))],
+    layout = [[sg.Listbox(values=('cliente 2', 'cliente3'), size=(30, 3))],
               [sg.Button('Incluir cliente', key='1', size=(15, 2)),
                sg.Button('Excluir cliente', key='3', size=(15, 2))],
               [sg.Button('Listar alugueis do cliente', key='4', size=(30, 1))],
@@ -34,11 +34,16 @@ class TelaCliente():
     self.__window = sg.Window('Cadastrar cliente').Layout(layout)
 
     botao, valores = self.__window.Read()
-
-    return({"nome": valores['nome'], "telefone": valores['telefone'], "endereco": valores['endereco']})
+#   return {"nome": nome, "telefone": telefone, "endereco": endereco}
+    return{"nome": valores['nome'], "telefone": valores['telefone'], "endereco": valores['endereco']}
 
   def close(self):
     self.__window.close()
+
+  def mostrar_cliente(self, dados_cliente):
+    print("------------------", "\n", "Nome do cliente: ", dados_cliente["nome"])
+    print("Telefone: ", dados_cliente["telefone"])
+    print("Endereco: ", dados_cliente["endereco"])
 
 """
 class TelaCliente():
