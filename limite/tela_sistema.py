@@ -14,12 +14,14 @@ class TelaSistema():
                   [sg.Button('Finalizar sistema', key='0', size=(20, 1))],
                   ]
         self.__window = sg.Window('HOME').Layout(layout)
+        
 
     def tela_opcoes(self):
         self.init_components()
         botao, valores = self.__window.Read()
         if botao is None:
             botao = 0
+        self.close()
         return int(botao)
 
     def close(self):

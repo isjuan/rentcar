@@ -7,7 +7,7 @@ class TelaCliente():
     self.init_components()
 
   def init_components(self):
-    layout = [[sg.Listbox(values=('cliente 2', 'cliente3'), size=(30, 3))],
+    layout = [#[sg.Listbox(values=('cliente 2', 'cliente3'), size=(30, 3))],
               [sg.Button('Incluir cliente', key='1', size=(15, 2)),
                sg.Button('Excluir cliente', key='3', size=(15, 2))],
               [sg.Button('Listar alugueis do cliente', key='4', size=(30, 1))],
@@ -22,6 +22,7 @@ class TelaCliente():
     botao, valores = self.__window.Read()
     if botao is None:
       botao = 0
+    self.close()
     return int(botao)
 
   def dados_cadastrar(self):
@@ -34,77 +35,71 @@ class TelaCliente():
     self.__window = sg.Window('Cadastrar cliente').Layout(layout)
 
     botao, valores = self.__window.Read()
-#   return {"nome": nome, "telefone": telefone, "endereco": endereco}
+    #   return {"nome": nome, "telefone": telefone, "endereco": endereco}
+    self.close()
     return{"nome": valores['nome'], "telefone": valores['telefone'], "endereco": valores['endereco']}
 
   def close(self):
     self.__window.close()
 
-  def mostrar_cliente(self, dados_cliente):
-    print("------------------", "\n", "Nome do cliente: ", dados_cliente["nome"])
-    print("Telefone: ", dados_cliente["telefone"])
-    print("Endereco: ", dados_cliente["endereco"])
-
-"""
-class TelaCliente():
-
-  def tela_opcoes(self):
-    print("-------- Cliente ----------")
-    print("Escolha a opcao")
-    print("1 - Incluir cliente")
-    print("2 - Listar clientes")
-    print("3 - Excluir cliente")
-    print("4 - Lista alugueis do cliente")
-    print("0 - Retornar")
-
-    opcao = self.le_int("Escolha a opcao: ", [1, 2, 3, 4, 0])
-    return opcao
-
-  def le_int(self, mensagem: str = " ", intervalo: [] = None):
-    while True:
-      lido = input(mensagem)
-      try:
-        inteiro = int(lido)
-        if intervalo and inteiro not in intervalo:
-          raise ValueError
-        return inteiro
-      except ValueError:
-        print ("Valor incorreto: Digite um valor valido")
-        if intervalo:
-          print("Valores validos:", intervalo)
-  
-
-  def dados_cadastrar(self):
-    print("-------- INCLUIR CLIENTE ----------")
-    nome = input("Nome: ")
-    telefone = input("Telefone: ")
-    endereco = input("Endereco: ")
-    return {"nome": nome, "telefone": telefone, "endereco": endereco}
-    
-
-  def mostrar_cliente(self, dados_cliente):
-    print("------------------", "\n", "Nome do cliente: ", dados_cliente["nome"])
-    print("Telefone: ", dados_cliente["telefone"])
-    print("Endereco: ", dados_cliente["endereco"])
-
   def retorna_cliente(self):
-    nome = input("Qual a nome do cliente?")
-    return nome
-  
+    layout= [[sg.Text('Qual o nome do cliente?')],
+             [sg.InputText('Nome', key='nome')],
+             [sg.Submit('Remover'), sg.Cancel('Cancelar')]
+    ]
+
+    self.__window = sg.Window('Selecionar cliente').Layout(layout)
+    botao, valores = self.__window.Read()
+    self.close()
+    return {"nome": valores['nome']}
+
   def exclui_cliente_return(self, verificador):
     if verificador == 0:
-      print ("Nome invalido! Retornando a tela Cliente")
+     layout= [[sg.Text('Nome invalido! Retornando a tela Cliente')]]
     if verificador == 1:
-      print ("O cliente tem um aluguel ativo! Falha ao remover.")
+     layout= [[sg.Text('O cliente tem um aluguel ativo! Falha ao remover.')]]
     if verificador == 2:
-      print ("Cliente removido do cadastro!")
+     layout= [[sg.Text('Cliente removido do cadastro!')]]
+
+    self.__window = sg.Window('Exclui cliente').Layout(layout)
+    botao, valores = self.__window.Read()
+
+  def aluguel_erro(self):
+    layout= [[sg.Text('O nome do cliente informado nao foi encontrado!')]]
+    self.__window = sg.Window('Erro ao criar aluguel').Layout(layout)
+    botao, valores = self.__window.Read()
 
   def lista_alugueis(self, lis: list):
     if len(lis) == 0:
-      print ("O cliente não tem alugueis!")
+      layout= [[sg.Text('O cliente não tem alugueis!')]]
     else:
-      print ("Os alugueis desse cliente são:", lis)
-  
-  def aluguel_erro(self):
-    print ("O nome do cliente informado nao foi encontrado!")
+      layout= [[sg.Text("Os alugueis desse cliente são:", lis)]]
+    
+    self.__window = sg.Window('Listar alugueis').Layout(layout)
+    botao, valores = self.__window.Read()
+
+  def mostrar_cliente(self, dados_cliente):
+
+    layout= [[sg.Text("Nome do cliente: ", dados_cliente["nome"])],
+              [sg.Text("Telefone: ",dados_cliente["telefone"])],
+              [sg.Text("Endereco: ",dados_cliente["endereco"])]
+              ]
+    self.__window = sg.Window('Listar clientes').Layout(layout)
+    botao, valores = self.__window.Read()
+
+
+  """
+
+    tamanho = len(dados_cliente)
+    layout= [[],
+              ]
+    [{nome:joao,tele:123}, {x:a,y:b}]
+
+
+  def mostrar_cliente(self, dados_cliente):
+    print("------------------", "\n", "Nome do cliente: ", dados_cliente["nome"])
+    print("Telefone: ", dados_cliente["telefone"])
+    print("Endereco: ", dados_cliente["endereco"])
+
+
 """

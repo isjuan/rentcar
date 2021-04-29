@@ -18,7 +18,8 @@ class ControladorCliente:
     cliente.remove(aluguel)
   
   def lista_alugueis(self):
-    nome = self.__tela_cliente.retorna_cliente()
+    lista_nome = self.__tela_cliente.retorna_cliente()
+    nome = lista_nome["nome"]
     for cliente in self.__clientes:
       if cliente.nome == nome:
         lista = cliente.lista()
@@ -47,11 +48,17 @@ class ControladorCliente:
   def lista_clientes(self):
     for cliente in self.__clientes:
       self.__tela_cliente.mostrar_cliente({"nome": cliente.nome, "telefone": cliente.telefone, "endereco": cliente.endereco})
-
-
+    '''
+    temp = []
+    for cliente in self.__clientes:
+      a = {"nome": cliente.nome, "telefone": cliente.telefone, "endereco": cliente.endereco}
+      temp.append(a)
+    self.__tela_cliente.mostrar_cliente(a)
+    '''
 
   def exclui_cliente(self):
-    nome = self.__tela_cliente.retorna_cliente()
+    lista_nome = self.__tela_cliente.retorna_cliente()
+    nome = lista_nome["nome"]
     verificador = 0
     for cliente in self.__clientes:
       if cliente.nome == nome:
