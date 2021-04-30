@@ -20,10 +20,11 @@ class ControladorCliente:
   def lista_alugueis(self):
     lista_nome = self.__tela_cliente.retorna_cliente()
     nome = lista_nome["nome"]
+    lista = []
     for cliente in self.__clientes:
       if cliente.nome == nome:
         lista = cliente.lista()
-        self.__tela_cliente.lista_alugueis(lista)
+    self.__tela_cliente.lista_alugueis(lista)
 
   def aluguel(self, nome_certa):
     cliente_verificador  = False
@@ -46,15 +47,15 @@ class ControladorCliente:
     self.__clientes.append(cliente)
 
   def lista_clientes(self):
-    for cliente in self.__clientes:
-      self.__tela_cliente.mostrar_cliente({"nome": cliente.nome, "telefone": cliente.telefone, "endereco": cliente.endereco})
-    '''
+    #for cliente in self.__clientes:
+    #  self.__tela_cliente.mostrar_cliente({"nome": cliente.nome, "telefone": cliente.telefone, "endereco": cliente.endereco})
+    
     temp = []
     for cliente in self.__clientes:
-      a = {"nome": cliente.nome, "telefone": cliente.telefone, "endereco": cliente.endereco}
+      a = ["Nome", cliente.nome,"Telefone", cliente.telefone,"Endereco", cliente.endereco]
       temp.append(a)
-    self.__tela_cliente.mostrar_cliente(a)
-    '''
+    self.__tela_cliente.mostrar_cliente(temp)
+    
 
   def exclui_cliente(self):
     lista_nome = self.__tela_cliente.retorna_cliente()

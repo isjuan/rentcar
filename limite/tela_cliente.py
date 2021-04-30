@@ -10,10 +10,9 @@ class TelaCliente():
     layout = [#[sg.Listbox(values=('cliente 2', 'cliente3'), size=(30, 3))],
               [sg.Button('Incluir cliente', key='1', size=(15, 2)),
                sg.Button('Excluir cliente', key='3', size=(15, 2))],
+              [sg.Button('Listar clientes', key='2', size=(30, 2))],
               [sg.Button('Listar alugueis do cliente', key='4', size=(30, 1))],
-              [sg.Button('<< Retornar <<', key='0', size=(15, 1))],
-              #BOTAO TESTE PARA VERIFICAR CLIENTES CADASTRADOS:
-              [sg.Button('test-Lista clientes', key='2', size=(15, 2))]
+              [sg.Button('<< Retornar <<', key='0', size=(15, 1))]
               ]
     self.__window = sg.Window('Clientes').Layout(layout)
 
@@ -45,7 +44,7 @@ class TelaCliente():
   def retorna_cliente(self):
     layout= [[sg.Text('Qual o nome do cliente?')],
              [sg.InputText('Nome', key='nome')],
-             [sg.Submit('Remover'), sg.Cancel('Cancelar')]
+             [sg.Submit('Enter'), sg.Cancel('Cancelar')]
     ]
 
     self.__window = sg.Window('Selecionar cliente').Layout(layout)
@@ -71,7 +70,7 @@ class TelaCliente():
 
   def lista_alugueis(self, lis: list):
     if len(lis) == 0:
-      layout= [[sg.Text('O cliente não tem alugueis!')]]
+      layout= [[sg.Text('Nenhum aluguel com o nome de cliente informado!')]]
     else:
       layout= [[sg.Text("Os alugueis desse cliente são:", lis)]]
     
@@ -79,11 +78,22 @@ class TelaCliente():
     botao, valores = self.__window.Read()
 
   def mostrar_cliente(self, dados_cliente):
-
-    layout= [[sg.Text("Nome do cliente: ", dados_cliente["nome"])],
-              [sg.Text("Telefone: ",dados_cliente["telefone"])],
-              [sg.Text("Endereco: ",dados_cliente["endereco"])]
-              ]
+    
+    #layout= [[sg.Text("Nome do cliente: ", dados_cliente["nome"])],
+    #          [sg.Text("Telefone: ",dados_cliente["telefone"])],
+    #          [sg.Text("Endereco: ",dados_cliente["endereco"])]
+    #          ]
+    
+    print (dados_cliente)
+    ly = [[sg.Text("Os clientes cadastrados são:")]]
+    contador = 0
+    if len(dados_cliente) > 0:
+      for i in dados_cliente:
+        ly.append([sg.Text("Cliente"), sg.Text(contador)])
+        ly.append([sg.Text("Nome:"), sg.Text(i[1]), sg.Text("Telefone:"),sg.Text(i[2]), sg.Text("Endereco:"),sg.Text(i[3])])
+     
+        contador = contador + 1      
+    layout = ly
     self.__window = sg.Window('Listar clientes').Layout(layout)
     botao, valores = self.__window.Read()
 
@@ -94,6 +104,14 @@ class TelaCliente():
     layout= [[],
               ]
     [{nome:joao,tele:123}, {x:a,y:b}]
+
+  ly
+  for i in dados_clientes:
+    ly.append [sg.text(i)]
+  
+  layout = ly
+
+  
 
 
   def mostrar_cliente(self, dados_cliente):
