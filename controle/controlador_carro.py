@@ -7,6 +7,7 @@ class ControladorCarro:
     self.__controlador_sistema = controlador_sistema
     self.__carros = []
     self.__tela_carro = TelaCarro()
+    self.__carros.append(Carro("p","m","c"))
     
 
   def incluir_carro(self):

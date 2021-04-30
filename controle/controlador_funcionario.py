@@ -7,6 +7,7 @@ class ControladorFuncionario:
     self.__controlador_sistema = controlador_sistema
     self.__funcionarios = []
     self.__tela_funcionario = TelaFuncionario()
+    self.__funcionarios.append(Funcionario("n", "t", "e"))
 
   def l_funcionarios(self):
     return self.__funcionarios

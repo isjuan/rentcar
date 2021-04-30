@@ -7,6 +7,7 @@ class ControladorCliente:
     self.__controlador_sistema = controlador_sistema
     self.__clientes = []
     self.__tela_cliente = TelaCliente()
+    self.__clientes.append(Cliente("n", "t", "e"))
   
   def l_clientes(self):
     return self.__clientes
@@ -41,10 +42,20 @@ class ControladorCliente:
 
   def incluir_cliente(self):
     dados_cliente = self.__tela_cliente.dados_cadastrar()
+    verificador = False
+    nome_cliente = dados_cliente["nome"]
+    for cliente in self.__clientes:
+      if nome_cliente == cliente.nome:
+        verificador = True
+      else:
+        print("rodou a lista de clientes - caso tenha clicado em cancelar ou X é erro")
+    if verificador == False:
+      cliente = Cliente(dados_cliente["nome"], dados_cliente["telefone"], dados_cliente["endereco"])
+      self.__clientes.append(cliente)
+    self.__tela_cliente.incluir_cliente_return(verificador)
+    
 
-    cliente = Cliente(dados_cliente["nome"], dados_cliente["telefone"], dados_cliente["endereco"])
-
-    self.__clientes.append(cliente)
+    
 
   def lista_clientes(self):
     #for cliente in self.__clientes:
@@ -52,7 +63,7 @@ class ControladorCliente:
     
     temp = []
     for cliente in self.__clientes:
-      a = ["Nome", cliente.nome,"Telefone", cliente.telefone,"Endereco", cliente.endereco]
+      a = [cliente.nome, cliente.telefone, cliente.endereco]
       temp.append(a)
     self.__tela_cliente.mostrar_cliente(temp)
     
