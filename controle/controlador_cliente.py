@@ -19,13 +19,14 @@ class ControladorCliente:
     cliente.remove(aluguel)
   
   def lista_alugueis(self):
-    lista_nome = self.__tela_cliente.retorna_cliente()
-    nome = lista_nome["nome"]
+    lista_nome, test_none = self.__tela_cliente.retorna_cliente()
     lista = []
-    for cliente in self.__clientes:
-      if cliente.nome == nome:
-        lista = cliente.lista()
-    self.__tela_cliente.lista_alugueis(lista)
+    if test_none == False:
+      nome = lista_nome["nome"]
+      for cliente in self.__clientes:
+        if cliente.nome == nome:
+          lista = cliente.lista()
+    self.__tela_cliente.lista_alugueis(test_none, lista)
 
   def aluguel(self, nome_certa):
     cliente_verificador  = False
@@ -41,26 +42,23 @@ class ControladorCliente:
     self.__tela_cliente.aluguel_erro()
 
   def incluir_cliente(self):
-    dados_cliente = self.__tela_cliente.dados_cadastrar()
-    verificador = False
-    nome_cliente = dados_cliente["nome"]
-    for cliente in self.__clientes:
-      if nome_cliente == cliente.nome:
-        verificador = True
-      else:
-        print("rodou a lista de clientes - caso tenha clicado em cancelar ou X é erro")
-    if verificador == False:
-      cliente = Cliente(dados_cliente["nome"], dados_cliente["telefone"], dados_cliente["endereco"])
-      self.__clientes.append(cliente)
+    dados_cliente, test_none = self.__tela_cliente.dados_cadastrar()
+    verificador = 2
+    if test_none == False:
+      nome_cliente = dados_cliente["nome"]
+      for cliente in self.__clientes:
+        if nome_cliente == cliente.nome:
+          verificador = 1
+      if verificador == 2:
+        verificador = 0
+        cliente = Cliente(dados_cliente["nome"], dados_cliente["telefone"], dados_cliente["endereco"])
+        self.__clientes.append(cliente)
     self.__tela_cliente.incluir_cliente_return(verificador)
     
 
     
 
   def lista_clientes(self):
-    #for cliente in self.__clientes:
-    #  self.__tela_cliente.mostrar_cliente({"nome": cliente.nome, "telefone": cliente.telefone, "endereco": cliente.endereco})
-    
     temp = []
     for cliente in self.__clientes:
       a = [cliente.nome, cliente.telefone, cliente.endereco]
@@ -69,18 +67,18 @@ class ControladorCliente:
     
 
   def exclui_cliente(self):
-    lista_nome = self.__tela_cliente.retorna_cliente()
-    nome = lista_nome["nome"]
-    verificador = 0
-    for cliente in self.__clientes:
-      if cliente.nome == nome:
-        if len(cliente.lista()) == 0:
-          verificador = 2
-          self.__clientes.remove(cliente)
-        if len(cliente.lista()) > 0:
-          verificador = 1
-
-    self.__tela_cliente.exclui_cliente_return(verificador)
+    lista_nome, test_none = self.__tela_cliente.retorna_cliente()
+    if test_none == False:
+      nome = lista_nome["nome"]
+      verificador = 0
+      for cliente in self.__clientes:
+        if cliente.nome == nome:
+          if len(cliente.lista()) == 0:
+            verificador = 2
+            self.__clientes.remove(cliente)
+          if len(cliente.lista()) > 0:
+            verificador = 1
+      self.__tela_cliente.exclui_cliente_return(verificador)
 
   def retorna_tela_principal(self):
     self.__controlador_sistema.inicializa_sistema()

@@ -1,62 +1,139 @@
+import PySimpleGUI as sg
+
 class TelaFuncionario():
 
+  def __init__(self):
+    self.__window = None
+    self.init_components()
+
+  def init_components(self):
+    layout = [#[sg.Listbox(values=('funcionario 2', 'funcionario3'), size=(30, 3))],
+              [sg.Button('Incluir funcionario', key='1', size=(15, 2)),
+               sg.Button('Excluir funcionario', key='3', size=(15, 2))],
+              [sg.Button('Listar funcionarios', key='2', size=(30, 2))],
+              [sg.Button('Listar alugueis do funcionario', key='4', size=(30, 1))],
+              [sg.Button('<< Retornar <<', key='0', size=(15, 1))]
+              ]
+    self.__window = sg.Window('Funcionarios').Layout(layout)
+
   def tela_opcoes(self):
-    print("-------- Funcionario ----------")
-    print("Escolha a opcao")
-    print("1 - Incluir funcionario")
-    print("2 - Listar funcionarios")
-    print("3 - Excluir funcionario")
-    print("4 - Ver alugueis do funcionario")
-    print("0 - Retornar")
-
-    opcao = self.le_int("Escolha a opcao: ", [1, 2, 3, 4, 0])
-    return opcao
-
-  def le_int(self, mensagem: str = " ", intervalo: [] = None):
-    while True:
-      lido = input(mensagem)
-      try:
-        inteiro = int(lido)
-        if intervalo and inteiro not in intervalo:
-          raise ValueError
-        return inteiro
-      except ValueError:
-        print ("Valor incorreto: Digite um valor valido")
-        if intervalo:
-          print("Valores validos:", intervalo)
-        
-    
+    self.init_components()
+    botao, valores = self.__window.Read()
+    if botao is None:
+      botao = 0
+    self.close()
+    return int(botao)
 
   def dados_cadastrar(self):
-    print("-------- INCLUIR FUNCIONARIO ----------")
-    nome = input("Nome: ")
-    telefone = input("Telefone: ")
-    endereco = input("Endereco: ")
-    return {"nome": nome, "telefone": telefone, "endereco": endereco}
     
+    layout= [[sg.Text('Nome:'), sg.InputText(key= 'nome')],
+             [sg.Text('Endereco:'), sg.InputText(key='endereco')],
+             [sg.Text('Telefone'), sg.InputText(key='telefone')],
+             [sg.Submit('Cadastrar'), sg.Cancel('Cancelar')]
+    ]
+    self.__window = sg.Window('Cadastrar funcionario').Layout(layout)
 
-  def mostrar_funcionario(self, dados_funcionario):
-    print("------------------", "\n", "Nome do funcionario: ", dados_funcionario["nome"])
-    print("Telefone: ", dados_funcionario["telefone"])
-    print("Endereco: ", dados_funcionario["endereco"])
+    botao, valores = self.__window.Read()
+    self.close()
+    test_none = False
+    if botao == None or botao == 'Cancelar' or valores['nome'] == None or valores['nome'] == '':
+
+      test_none = True
+    return{"nome": valores['nome'], "telefone": valores['telefone'], "endereco": valores['endereco']}, test_none
+
+  def incluir_funcionario_return(self, verificador):
+    if verificador == 1:   
+      layout= [[sg.Text('Ja existe um funcionario com esse nome!')],
+               [sg.Button('OK', key=self.close(), size=(5, 1))]]
+    if verificador == 0:
+      layout= [[sg.Text('Funcionario cadastrado!')],
+               [sg.Button('OK', key=self.close(), size=(5, 1))]
+               ]
+    if verificador == 2:
+      layout= [[sg.Text('Operacao cancelada. Retornando a Tela Funcionario.')],
+               [sg.Button('OK', key=self.close(), size=(5, 1))]
+               ]
+  
+    self.__window = sg.Window('Incluir funcionario').Layout(layout)
+    botao, valores = self.__window.Read()
+    self.close()
+
+
+
+  def close(self):
+    self.__window.close()
 
   def retorna_funcionario(self):
-    nome = input("Qual a nome do funcionario?")
-    return nome
-  
+    layout= [[sg.Text('Qual o nome do funcionario?')],
+             [sg.InputText(key='nome')],
+             [sg.Submit('Enter'), sg.Cancel('Cancelar')]
+    ]
+
+    self.__window = sg.Window('Selecionar funcionario').Layout(layout)
+    botao, valores = self.__window.Read()
+    self.close()
+    test_none = False
+    if botao == None or botao == 'Cancelar' or valores['nome'] == None:
+
+      test_none = True
+    return {"nome": valores['nome']}, test_none
+
   def exclui_funcionario_return(self, verificador):
     if verificador == 0:
-      print ("Nome invalido! Retornando a tela Funcionario")
+     layout= [[sg.Text('Nome invalido! Retornando a tela Funcionario')],
+              [sg.Button('OK', key=self.close(), size=(5, 1))]
+              ]
     if verificador == 1:
-      print ("O funcionario tem um aluguel ativo! Falha ao remover.")
+     layout= [[sg.Text('O funcionario tem um aluguel ativo! Falha ao remover.')],
+              [sg.Button('OK', key=self.close(), size=(5, 1))]
+              ]
     if verificador == 2:
-      print ("Funcionario removido do cadastro!")
+     layout= [[sg.Text('Funcionario removido do cadastro!')],
+              [sg.Button('OK', key=self.close(), size=(5, 1))]
+              ]
 
-  def lista_alugueis(self, lis: list):
-    if len(lis) == 0:
-      print ("O funcionario não tem alugueis!")
-    else:
-      print ("Os alugueis desse funcionario são:", lis)
+    self.__window = sg.Window('Exclui funcionario').Layout(layout)
+    botao, valores = self.__window.Read()
+    self.close()
 
   def aluguel_erro(self):
-    print ("O nome do funcionario informado nao foi encontrado!")
+    layout= [[sg.Text('O nome do funcionario informado nao foi encontrado!')],
+             [sg.Button('OK', key=self.close(), size=(5, 1))]
+             ]
+    self.__window = sg.Window('Erro ao criar aluguel').Layout(layout)
+    botao, valores = self.__window.Read()
+    
+
+  def lista_alugueis(self, test_none: bool, lis: list):
+    if test_none == False:
+      total = len(lis)
+      if total == 0:
+        layout= [[sg.Text('Nenhum aluguel com o nome de funcionario informado!')],
+                [sg.Button('OK', key=self.close(), size=(5, 1))]
+                ]
+      else:
+        contador = 0
+        layout= [[sg.Text("Os alugueis desse funcionario são:")]]
+        for i in lis:
+          layout.append([sg.Text("Aluguel"), sg.Text(contador)])
+
+          layout.append([sg.Text("Placa do carro:"), sg.Text(i.carro.placa), sg.Text("Funcionario:"),sg.Text(i.cliente.nome), sg.Text("Codigo:"),sg.Text(i.data)])   
+
+          
+      self.__window = sg.Window('Listar alugueis').Layout(layout)
+      botao, valores = self.__window.Read()
+      self.close()
+
+  def mostrar_funcionario(self, dados_funcionario):
+    layout = [[sg.Text("Os funcionarios cadastrados são:")]]
+    if len(dados_funcionario) > 0:
+      contador = 0
+      for i in dados_funcionario:
+        layout.append([sg.Text("Funcionario"), sg.Text(contador)])
+        layout.append([sg.Text("Nome:"), sg.Text(i[0]), sg.Text("Telefone:"),sg.Text(i[1]), sg.Text("Endereco:"),sg.Text(i[2])])   
+        contador = contador + 1 
+      layout.append([sg.Button('<< Retornar <<', key= self.close(), size=(15, 1))])
+
+    self.__window = sg.Window('Listar funcionarios').Layout(layout)
+    botao, valores = self.__window.Read()
+    self.close()
