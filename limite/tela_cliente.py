@@ -7,8 +7,7 @@ class TelaCliente():
     self.init_components()
 
   def init_components(self):
-    layout = [#[sg.Listbox(values=('cliente 2', 'cliente3'), size=(30, 3))],
-              [sg.Button('Incluir cliente', key='1', size=(15, 2)),
+    layout = [[sg.Button('Incluir cliente', key='1', size=(15, 2)),
                sg.Button('Excluir cliente', key='3', size=(15, 2))],
               [sg.Button('Listar clientes', key='2', size=(30, 2))],
               [sg.Button('Listar alugueis do cliente', key='4', size=(30, 1))],
@@ -91,10 +90,10 @@ class TelaCliente():
      layout= [[sg.Text('Cliente removido do cadastro!')],
               [sg.Button('OK', key=self.close(), size=(5, 1))]
               ]
-
-    self.__window = sg.Window('Exclui cliente').Layout(layout)
-    botao, valores = self.__window.Read()
-    self.close()
+    if verificador != 9:
+      self.__window = sg.Window('Exclui cliente').Layout(layout)
+      botao, valores = self.__window.Read()
+      self.close()
 
   def aluguel_erro(self):
     layout= [[sg.Text('O nome do cliente informado nao foi encontrado!')],

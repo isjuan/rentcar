@@ -117,7 +117,7 @@ class TelaFuncionario():
         for i in lis:
           layout.append([sg.Text("Aluguel"), sg.Text(contador)])
 
-          layout.append([sg.Text("Placa do carro:"), sg.Text(i.carro.placa), sg.Text("Funcionario:"),sg.Text(i.cliente.nome), sg.Text("Codigo:"),sg.Text(i.data)])   
+          layout.append([sg.Text("Placa do carro:"), sg.Text(i.carro.placa), sg.Text("Cliente:"),sg.Text(i.cliente.nome), sg.Text("Codigo do aluguel:"),sg.Text(i.data)])   
 
           
       self.__window = sg.Window('Listar alugueis').Layout(layout)

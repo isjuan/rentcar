@@ -48,3 +48,6 @@ class Carro:
 
   def remove(self, aluguel):
     self.__aluguel.remove(aluguel)
+
+  def lista(self):
+    return self.__aluguel
