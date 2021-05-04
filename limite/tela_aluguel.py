@@ -1,4 +1,64 @@
+import PySimpleGUI as sg
 
+class TelaAluguel():
+
+  def __init__(self):
+    self.__window = None
+    self.init_components()
+
+  def init_components(self):
+    layout = [[sg.Button('Criar aluguel', key='1', size=(15, 2)),
+               sg.Button('Excluir aluguel', key='3', size=(15, 2))],
+              [sg.Button('Listar alugueis', key='2', size=(30, 1))],
+              [sg.Button('<< Retornar <<', key='0', size=(15, 1))]
+              ]
+    self.__window = sg.Window('Aluguel').Layout(layout)
+
+  def tela_opcoes(self):
+    self.init_components()
+    botao, valores = self.__window.Read()
+    if botao is None:
+      botao = 0
+    self.close()
+    return int(botao)
+
+  def close(self):
+    self.__window.close()
+
+  def dados_cadastrar(self):
+    print("-------- CRIAR ALUGUEL ----------")
+    placa = input("Insira a placa do carro: ")
+    nome_cliente = input("Insira o nome do cliente: ")
+    nome_funcionario = input("Insira o nome do funcionario: ")
+    data = input("Codigo de registro do aluguel(unico): ")
+    return {"carro": placa, "cliente": nome_cliente, "funcionario": nome_funcionario,  "data": data}
+
+  def mostra_aluguel(self, dados_aluguel):
+    print("------------------", "\n", "Carro: ", dados_aluguel["carro"])
+    print("Cliente: ", dados_aluguel["cliente"])
+    print("Funcionario: ", dados_aluguel["funcionario"])
+    print("Codigo do aluguel: ", dados_aluguel["data"])
+
+      
+  def exclui_aluguel(self):
+    codigo = input("Qual o codigo do aluguel?")
+    return codigo
+  
+  def aluguel_erro(self):
+    print ("O codigo do aluguel ja esta sendo utilizado!")
+
+  def exclui_aluguel_return(self, bol):
+    if bol == False:
+      print ("Codigo invalido! Retornando a tela Aluguel")
+    if bol == True:
+      print ("Aluguel terminado!")
+
+  def cadastro(self, verificador):
+    if verificador == False:
+      print ("Erro no cadastro! Retornando a tela Aluguel")
+    if verificador == True:
+      print ("Aluguel criado")
+'''
 class TelaAluguel():
 
   def tela_opcoes(self):
@@ -58,3 +118,5 @@ class TelaAluguel():
       print ("Erro no cadastro! Retornando a tela Aluguel")
     if verificador == True:
       print ("Aluguel criado")
+
+'''
