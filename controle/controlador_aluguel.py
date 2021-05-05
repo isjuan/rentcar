@@ -69,24 +69,27 @@ class ControladorAluguel:
 
 
   def lista_alugueis(self):
+    dados_aluguel = []
     for aluguel in self.__alugueis:
-      self.__tela_aluguel.mostra_aluguel({"carro": aluguel.carro.placa, "cliente": aluguel.cliente.nome, "funcionario": aluguel.funcionario.nome, "data": aluguel.data})
+      dados_aluguel.append({"carro": aluguel.carro.placa, "cliente": aluguel.cliente.nome, "funcionario": aluguel.funcionario.nome, "data": aluguel.data})
+    self.__tela_aluguel.mostra_aluguel(dados_aluguel)
 
   def exclui_aluguel(self):
-    codigo = self.__tela_aluguel.exclui_aluguel()
+    codigo, test_none = self.__tela_aluguel.exclui_aluguel()
     verificador = False
-    for aluguel in self.__alugueis:
-      if aluguel.data == codigo:
-        verificador = True
-        self.__controlador_carro.aluga(aluguel.carro,aluguel, False)
-        self.__controlador_cliente.remove(aluguel.cliente, aluguel)
-        self.__controlador_funcionario.remove(aluguel.funcionario, aluguel)
+    if test_none == False:
+      for aluguel in self.__alugueis:
+        if aluguel.data == codigo:
+          verificador = True
+          self.__controlador_carro.aluga(aluguel.carro,aluguel, False)
+          self.__controlador_cliente.remove(aluguel.cliente, aluguel)
+          self.__controlador_funcionario.remove(aluguel.funcionario, aluguel)
 
-        self.__alugueis.remove(aluguel)
-        self.__tela_aluguel.exclui_aluguel_return(verificador)
-      
-    if verificador == False:
-        self.__tela_aluguel.exclui_aluguel_return(verificador)
+          self.__alugueis.remove(aluguel)
+          self.__tela_aluguel.exclui_aluguel_return(verificador)
+        
+      if verificador == False:
+          self.__tela_aluguel.exclui_aluguel_return(verificador)
 
   def retorna_tela_principal(self):
     self.__controlador_sistema.inicializa_sistema()

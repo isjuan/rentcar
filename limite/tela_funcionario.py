@@ -127,8 +127,9 @@ class TelaFuncionario():
         layout.append([sg.Text("Funcionario"), sg.Text(contador)])
         layout.append([sg.Text("Nome:"), sg.Text(i[0]), sg.Text("Telefone:"),sg.Text(i[1]), sg.Text("Endereco:"),sg.Text(i[2])])   
         contador = contador + 1 
-      layout.append([sg.Button('<< Retornar <<', key= self.close(), size=(15, 1))])
-
+    else:
+      layout.append([sg.Text("Nenhum funcionario cadastrado!")])
+    layout.append([sg.Button('<< Retornar <<', key= self.close(), size=(15, 1))])
     self.__window = sg.Window('Listar funcionarios').Layout(layout)
     botao, valores = self.__window.Read()
     self.close()

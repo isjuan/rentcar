@@ -57,30 +57,28 @@ class TelaAluguel():
     if len(dados_aluguel) > 0:
       contador = 0
       for i in dados_aluguel:
-        layout.append([sg.Text("Aluguel"), sg.Text(contador)])
-        layout.append([sg.Text("Carro:"), sg.Text(i[0]), sg.Text("Cliente:"),sg.Text(i[1]), sg.Text("Funcionario:"),sg.Text(i[2])])
+        layout.append([sg.Text("Codigo do aluguel:"), sg.Text(i["data"])])
+        layout.append([sg.Text("Carro:"), sg.Text(i["carro"]), sg.Text("Cliente:"),sg.Text(i["cliente"]), sg.Text("Funcionario:"),sg.Text(i["funcionario"])])
         contador = contador + 1
-      layout.append([sg.Button('<< Retornar <<', key= self.close(), size=(15, 1))])
-
+    else:
+      layout.append([sg.Text("Sem alugueis ativos!")])
+    layout.append([sg.Button('<< Retornar <<', key= self.close(), size=(15, 1))])
     self.__window = sg.Window('Listar Alugueisa').Layout(layout)
     botao, valores = self.__window.Read()
     self.close()
-
-    print("------------------", "\n", "Carro: ", dados_aluguel["carro"])
-    print("Cliente: ", dados_aluguel["cliente"])
-    print("Funcionario: ", dados_aluguel["funcionario"])
-    print("Codigo do aluguel: ", dados_aluguel["data"])
 
 
   def exclui_aluguel(self):
     layout = [[sg.Text('"Qual o codigo do aluguel?"')],
              [sg.InputText(key='codigo')],
-             [sg.Submit('Enter')]
-             ]
+             [sg.Submit('Enter'),sg.Button('Cancelar', key=self.close())]]
     self.__window = sg.Window('Selecionar carro').Layout(layout)
     botao, valores = self.__window.Read()
+    test_none = False
+    if botao == None or botao == 'Cancelar' or valores['codigo'] == None or valores['codigo'] == '':
+      test_none = True
     self.close()
-    return valores['codigo']
+    return valores['codigo'], test_none
 
   def aluguel_erro(self, cliente_verificador, funcionario_verificador, carro_verificador,  codigo_verificador):
     layout = []
@@ -136,7 +134,6 @@ class TelaAluguel():
       self.__window = sg.Window('SUCESS').Layout(layout)
       self.__window.Read()
       self.close()
-      print ("Aluguel criado")
 '''
 class TelaAluguel():
 

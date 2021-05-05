@@ -104,7 +104,9 @@ class TelaCarro():
         layout.append([sg.Text("Carro"), sg.Text(contador)])
         layout.append([sg.Text("Placa:"), sg.Text(i[0]), sg.Text("Modelo:"),sg.Text(i[1]), sg.Text("Cor:"),sg.Text(i[2])])   
         contador = contador + 1 
-      layout.append([sg.Button('<< Retornar <<', key= self.close(), size=(15, 1))])
+    else:
+      layout.append([sg.Text("Nenhum funcionario cadastrado!")])
+    layout.append([sg.Button('<< Retornar <<', key= self.close(), size=(15, 1))])
 
     self.__window = sg.Window('Listar carros').Layout(layout)
     botao, valores = self.__window.Read()
