@@ -13,7 +13,7 @@ class ControladorAluguel:
     self.__tela_aluguel = TelaAluguel()
 
   def incluir_aluguel(self):
-    dados_aluguel = self.__tela_aluguel.dados_cadastrar()
+    dados_aluguel = self.__tela_aluguel.dados_cadastrar
 
     placa = dados_aluguel["carro"]
     carro_certo, carro_verificador = self.__controlador_carro.aluguel(placa)   

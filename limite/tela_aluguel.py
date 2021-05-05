@@ -25,13 +25,22 @@ class TelaAluguel():
   def close(self):
     self.__window.close()
 
+  @property
   def dados_cadastrar(self):
-    print("-------- CRIAR ALUGUEL ----------")
-    placa = input("Insira a placa do carro: ")
-    nome_cliente = input("Insira o nome do cliente: ")
-    nome_funcionario = input("Insira o nome do funcionario: ")
-    data = input("Codigo de registro do aluguel(unico): ")
-    return {"carro": placa, "cliente": nome_cliente, "funcionario": nome_funcionario,  "data": data}
+
+    layout= [[sg.Text('Placa do carro:'), sg.InputText(key= 'placa')],
+             [sg.Text('Nome do cliente:'), sg.InputText(key='nome_cliente')],
+             [sg.Text('Nome do funcionário:'), sg.InputText(key='nome_funcionario')],
+             [sg.Text('Código de registro(único)'), sg.InputText(key='data')],
+             [sg.Submit('Registrar Aluguel')]# sg.Cancel('Cancelar')]
+    ]
+    self.__window = sg.Window('Cadastrar funcionario').Layout(layout)
+
+    botao, valores = self.__window.Read()
+    self.close()
+
+    return {"carro": valores['placa'], "cliente": valores['nome_cliente'], "funcionario": valores['nome_funcionario'], "data": valores['data']}
+    #return {"carro": placa, "cliente": nome_cliente, "funcionario": nome_funcionario,  "data": data}
 
   def mostra_aluguel(self, dados_aluguel):
     print("------------------", "\n", "Carro: ", dados_aluguel["carro"])
