@@ -55,7 +55,7 @@ class TelaFuncionario():
                ]
   
     self.__window = sg.Window('Incluir funcionario').Layout(layout)
-    botao, valores = self.__window.Read()
+    self.__window.Read()
     self.close()
 
 

@@ -40,32 +40,74 @@ class TelaAluguel():
     self.close()
 
     return {"carro": valores['placa'], "cliente": valores['nome_cliente'], "funcionario": valores['nome_funcionario'], "data": valores['data']}
-    #return {"carro": placa, "cliente": nome_cliente, "funcionario": nome_funcionario,  "data": data}
-
+  #BUG
   def mostra_aluguel(self, dados_aluguel):
+
+    layout = [[sg.Text("Os Alugueis são:")]]
+    if len(dados_aluguel) > 0:
+      contador = 0
+      for i in dados_aluguel:
+        layout.append([sg.Text("Aluguel"), sg.Text(contador)])
+        layout.append([sg.Text("Carro:"), sg.Text(i[0]), sg.Text("Cliente:"),sg.Text(i[1]), sg.Text("Funcionario:"),sg.Text(i[2])])
+        contador = contador + 1
+      layout.append([sg.Button('<< Retornar <<', key= self.close(), size=(15, 1))])
+
+    self.__window = sg.Window('Listar Alugueisa').Layout(layout)
+    botao, valores = self.__window.Read()
+    self.close()
+
     print("------------------", "\n", "Carro: ", dados_aluguel["carro"])
     print("Cliente: ", dados_aluguel["cliente"])
     print("Funcionario: ", dados_aluguel["funcionario"])
     print("Codigo do aluguel: ", dados_aluguel["data"])
 
-      
+
   def exclui_aluguel(self):
-    codigo = input("Qual o codigo do aluguel?")
-    return codigo
-  
+    layout = [[sg.Text('"Qual o codigo do aluguel?"')],
+             [sg.InputText(key='codigo')],
+             [sg.Submit('Enter')]
+             ]
+    self.__window = sg.Window('Selecionar carro').Layout(layout)
+    botao, valores = self.__window.Read()
+    self.close()
+    return valores['codigo']
+
   def aluguel_erro(self):
-    print ("O codigo do aluguel ja esta sendo utilizado!")
+    layout = [[sg.Text('O codigo do aluguel ja esta sendo utilizado!')],
+              [sg.Button('OK', key=self.close(), size=(5, 1))]]
+    self.__window = sg.Window('ERRO').Layout(layout)
+    self.__window.Read()
+    self.close()
 
   def exclui_aluguel_return(self, bol):
     if bol == False:
-      print ("Codigo invalido! Retornando a tela Aluguel")
+      layout = [[sg.Text('Codigo invalido! Retornando a tela Aluguel')],
+                [sg.Button('OK', key=self.close(), size=(5, 1))]]
+      self.__window = sg.Window('ERRO').Layout(layout)
+      self.__window.Read()
+      self.close()
+
     if bol == True:
-      print ("Aluguel terminado!")
+      layout = [[sg.Text('Aluguel terminado!')],
+                [sg.Button('OK', key=self.close(), size=(5, 1))]]
+      self.__window = sg.Window('FINISH').Layout(layout)
+      self.__window.Read()
+      self.close()
 
   def cadastro(self, verificador):
     if verificador == False:
-      print ("Erro no cadastro! Retornando a tela Aluguel")
+      layout = [[sg.Text('Erro no cadastro! Retornando a tela Aluguel')],
+                [sg.Button('OK', key=self.close(), size=(5, 1))]]
+      self.__window = sg.Window('ERRO').Layout(layout)
+      self.__window.Read()
+      self.close()
+
     if verificador == True:
+      layout = [[sg.Text('Aluguel criado')],
+                [sg.Button('OK', key=self.close(), size=(5, 1))]]
+      self.__window = sg.Window('SUCESS').Layout(layout)
+      self.__window.Read()
+      self.close()
       print ("Aluguel criado")
 '''
 class TelaAluguel():

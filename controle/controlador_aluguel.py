@@ -70,7 +70,7 @@ class ControladorAluguel:
 
   def lista_alugueis(self):
     for aluguel in self.__alugueis:
-      self.__tela_aluguel.mostra_aluguel({"carro": aluguel.carro, "cliente": aluguel.cliente, "funcionario": aluguel.funcionario, "data": aluguel.data})
+      self.__tela_aluguel.mostra_aluguel({"carro": aluguel.carro.placa, "cliente": aluguel.cliente.nome, "funcionario": aluguel.funcionario.nome, "data": aluguel.data})
 
   def exclui_aluguel(self):
     codigo = self.__tela_aluguel.exclui_aluguel()
