@@ -96,12 +96,7 @@ class TelaFuncionario():
     botao, valores = self.__window.Read()
     self.close()
 
-  def aluguel_erro(self):
-    layout= [[sg.Text('O nome do funcionario informado nao foi encontrado!')],
-             [sg.Button('OK', key=self.close(), size=(5, 1))]
-             ]
-    self.__window = sg.Window('Erro ao criar aluguel').Layout(layout)
-    botao, valores = self.__window.Read()
+
     
 
   def lista_alugueis(self, test_none: bool, lis: list):

@@ -25,22 +25,32 @@ class TelaAluguel():
   def close(self):
     self.__window.close()
 
-  @property
+  
+
+
   def dados_cadastrar(self):
 
     layout= [[sg.Text('Placa do carro:'), sg.InputText(key= 'placa')],
              [sg.Text('Nome do cliente:'), sg.InputText(key='nome_cliente')],
              [sg.Text('Nome do funcionário:'), sg.InputText(key='nome_funcionario')],
              [sg.Text('Código de registro(único)'), sg.InputText(key='data')],
-             [sg.Submit('Registrar Aluguel')]# sg.Cancel('Cancelar')]
+             [sg.Submit('Registrar Aluguel'), sg.Cancel('Cancelar')]
     ]
     self.__window = sg.Window('Cadastrar funcionario').Layout(layout)
 
     botao, valores = self.__window.Read()
     self.close()
+    test_none = False
+    if botao == None or botao == 'Cancelar' or valores['data'] == None or valores['data'] == '':
+      test_none = True
 
-    return {"carro": valores['placa'], "cliente": valores['nome_cliente'], "funcionario": valores['nome_funcionario'], "data": valores['data']}
+    return {"carro": valores['placa'], "cliente": valores['nome_cliente'], "funcionario": valores['nome_funcionario'], "data": valores['data']}, test_none
+  
+  
   #BUG
+
+
+
   def mostra_aluguel(self, dados_aluguel):
 
     layout = [[sg.Text("Os Alugueis são:")]]
@@ -72,10 +82,28 @@ class TelaAluguel():
     self.close()
     return valores['codigo']
 
-  def aluguel_erro(self):
-    layout = [[sg.Text('O codigo do aluguel ja esta sendo utilizado!')],
-              [sg.Button('OK', key=self.close(), size=(5, 1))]]
-    self.__window = sg.Window('ERRO').Layout(layout)
+  def aluguel_erro(self, cliente_verificador, funcionario_verificador, carro_verificador,  codigo_verificador):
+    layout = []
+    if cliente_verificador == False:
+      layout.append([sg.Text('O nome do cliente informado nao foi encontrado!')])
+
+
+    if funcionario_verificador == False:
+      layout.append([sg.Text('O nome do funcionario informado nao foi encontrado!')])
+        
+
+    if carro_verificador < 2:
+      if carro_verificador == 0:
+        layout.append([sg.Text('O placa do carro informado nao foi encontrado!')])
+      if carro_verificador == 1:
+          layout.append([sg.Text('O carro informado ja esta alugado!')])
+
+
+    if codigo_verificador != 0:
+      layout.append([sg.Text('O codigo do aluguel ja esta sendo utilizado!')])
+
+    layout.append([sg.Button('OK', key=self.close(), size=(5, 1))])
+    self.__window = sg.Window('Erro ao criar aluguel').Layout(layout)
     self.__window.Read()
     self.close()
 
@@ -96,7 +124,7 @@ class TelaAluguel():
 
   def cadastro(self, verificador):
     if verificador == False:
-      layout = [[sg.Text('Erro no cadastro! Retornando a tela Aluguel')],
+      layout = [[sg.Text('Erro no cadastro!')],
                 [sg.Button('OK', key=self.close(), size=(5, 1))]]
       self.__window = sg.Window('ERRO').Layout(layout)
       self.__window.Read()

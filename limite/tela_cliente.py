@@ -23,6 +23,8 @@ class TelaCliente():
     self.close()
     return int(botao)
 
+
+
   def dados_cadastrar(self):
     
     layout= [[sg.Text('Nome:'), sg.InputText(key= 'nome')],
@@ -39,6 +41,9 @@ class TelaCliente():
 
       test_none = True
     return{"nome": valores['nome'], "telefone": valores['telefone'], "endereco": valores['endereco']}, test_none
+
+
+
 
   def incluir_cliente_return(self, verificador):
     if verificador == 1:   
@@ -95,13 +100,7 @@ class TelaCliente():
       botao, valores = self.__window.Read()
       self.close()
 
-  def aluguel_erro(self):
-    layout= [[sg.Text('O nome do cliente informado nao foi encontrado!')],
-             [sg.Button('OK', key=self.close(), size=(5, 1))]
-             ]
-    self.__window = sg.Window('Erro ao criar aluguel').Layout(layout)
-    botao, valores = self.__window.Read()
-    
+
 
   def lista_alugueis(self, test_none: bool, lis: list):
     if test_none == False:

@@ -38,9 +38,6 @@ class ControladorFuncionario:
       funcionario_certo = 0
     return funcionario_certo, funcionario_verificador
 
-  def aluguel_erro(self):
-    self.__tela_funcionario.aluguel_erro()
-
   def incluir_funcionario(self):
     dados_funcionario, test_none = self.__tela_funcionario.dados_cadastrar()
     verificador = 2

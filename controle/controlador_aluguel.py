@@ -12,8 +12,11 @@ class ControladorAluguel:
     self.__alugueis = []
     self.__tela_aluguel = TelaAluguel()
 
+
+
+
   def incluir_aluguel(self):
-    dados_aluguel = self.__tela_aluguel.dados_cadastrar
+    dados_aluguel, test_none = self.__tela_aluguel.dados_cadastrar()
 
     placa = dados_aluguel["carro"]
     carro_certo, carro_verificador = self.__controlador_carro.aluguel(placa)   
@@ -42,19 +45,16 @@ class ControladorAluguel:
 
           self.__alugueis.append(aluguel)
           aluguel_verificador = True
+    if test_none == False: 
+      self.__tela_aluguel.cadastro(aluguel_verificador)
+      if aluguel_verificador == False:
+        self.aluguel_verificadores(cliente_verificador, funcionario_verificador, carro_verificador,codigo_verificador)
 
-    self.aluguel_verificadores(cliente_verificador, funcionario_verificador, carro_verificador,codigo_verificador,  aluguel_verificador)
 
-  def aluguel_verificadores(self, cliente_verificador, funcionario_verificador, carro_verificador, codigo_verificador, aluguel_verificador):
-    if cliente_verificador == False:
-      self.__controlador_cliente.aluguel_erro()
-    if funcionario_verificador == False:
-      self.__controlador_funcionario.aluguel_erro()
-    if carro_verificador < 2:
-      self.__controlador_carro.aluguel_erro(carro_verificador)   
-    if codigo_verificador != 0:
-      self.__tela_aluguel.aluguel_erro()
-    self.__tela_aluguel.cadastro(aluguel_verificador)
+
+
+  def aluguel_verificadores(self, cliente_verificador, funcionario_verificador, carro_verificador, codigo_verificador):
+    self.__tela_aluguel.aluguel_erro(cliente_verificador, funcionario_verificador, carro_verificador, codigo_verificador)
 
 
   def codigo_aluguel(self, identificador):

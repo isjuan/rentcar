@@ -95,18 +95,6 @@ class TelaCarro():
       botao, valores = self.__window.Read()
       self.close()
 
-  def aluguel_erro(self, carro_verificador):
-    if carro_verificador == 0:
-      layout= [[sg.Text('O placa do carro informado nao foi encontrado!')],
-             [sg.Button('OK', key=self.close(), size=(5, 1))]
-             ]
-    if carro_verificador == 1:
-        layout= [[sg.Text('O carro informado ja esta alugado!')],
-                [sg.Button('OK', key=self.close(), size=(5, 1))]
-                ]
-    self.__window = sg.Window('Erro ao criar aluguel').Layout(layout)
-    botao, valores = self.__window.Read()
-
 
   def mostrar_carro(self, dados_carro):
     layout = [[sg.Text("Os carros cadastrados são:")]]
