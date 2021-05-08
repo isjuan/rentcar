@@ -1,5 +1,6 @@
 from daos.dao import DAO
 from entidade.cliente import Cliente
+
 class ClienteDAO(DAO):
 
     def __init__(self):

@@ -3,6 +3,7 @@ from abc import ABC, abstractmethod
 
 class DAO (ABC):
 
+    @abstractmethod
     def __init__(self, datasource=''):
         self.__datasource = datasource
         self.__cache = {}
@@ -12,10 +13,10 @@ class DAO (ABC):
             self.__dump()
 
     def __dump (self):
-        pickle.dump (self.__cache, open (self.__datasource, 'wb'))
+        pickle.dump (self.__cache, open(self.__datasource, 'wb'))
 
     def load(self):
-        self.__cache = pickle.load (open (self._datasource, 'rb'))
+        self.__cache = pickle.load(self.__cache, open(self.__datasource, 'rb'))
 
     def add (self, key, obj):
         self.__cache[key] = obj
