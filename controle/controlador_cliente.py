@@ -48,6 +48,21 @@ class ControladorCliente:
 
   def incluir_cliente(self):
     dados_cliente, test_none = self.__tela_cliente.dados_cadastrar()
+
+    verificador = 2
+    if test_none == False:
+      nome = dados_cliente["nome"]
+      cli = self.__dao.get(nome)
+      if type(cli) == Cliente:
+          verificador = 1
+      if verificador == 2:
+        verificador = 0
+        cliente = Cliente(dados_cliente["nome"], dados_cliente["telefone"], dados_cliente["endereco"])
+        self.__dao.add(cliente)
+    self.__tela_cliente.incluir_cliente_return(verificador)
+
+
+    '''
     verificador = 2
     if test_none == False:
       nome_cliente = dados_cliente["nome"]
@@ -59,7 +74,7 @@ class ControladorCliente:
         cliente = Cliente(dados_cliente["nome"], dados_cliente["telefone"], dados_cliente["endereco"])
         self.__dao.add(cliente)
     self.__tela_cliente.incluir_cliente_return(verificador)
-    
+    '''
 
 
     
@@ -68,14 +83,31 @@ class ControladorCliente:
 
   def lista_clientes(self):
     temp = []
-    for cliente in self.__clientes:
+    chave = self.__dao.get_all()
+    print (chave)
+    for cliente in chave:
       a = [cliente.nome, cliente.telefone, cliente.endereco]
       temp.append(a)
+    print (len(chave))
     self.__tela_cliente.mostrar_cliente(temp)
     
 
   def exclui_cliente(self):
     lista_nome, test_none = self.__tela_cliente.retorna_cliente()
+    if test_none == False:
+      verificador = 0
+      nome = lista_nome["nome"]
+      cli = self.__dao.get(nome)
+      if type(cli) == Cliente:
+        if len(cli.lista()) == 0:
+          verificador = 2
+          self.__dao.remove(nome)
+        if len(cli.lista()) > 0:
+          verificador = 1
+      if cli == 0:
+        verificador = 0
+      self.__tela_cliente.exclui_cliente_return(verificador)
+    '''
     if test_none == False:
       nome = lista_nome["nome"]
       verificador = 0
@@ -87,6 +119,7 @@ class ControladorCliente:
           if len(cliente.lista()) > 0:
             verificador = 1
       self.__tela_cliente.exclui_cliente_return(verificador)
+      '''
 
   def retorna_tela_principal(self):
     self.__controlador_sistema.inicializa_sistema()

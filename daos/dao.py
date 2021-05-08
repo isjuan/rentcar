@@ -13,10 +13,10 @@ class DAO (ABC):
             self.__dump()
 
     def __dump (self):
-        pickle.dump (self.__cache, open(self.__datasource, 'wb'))
+        pickle.dump(self.__cache, open(self.__datasource, 'wb'))
 
-    def load(self):
-        self.__cache = pickle.load(self.__cache, open(self.__datasource, 'rb'))
+    def __load(self):
+        self.__cache = pickle.load(open(self.__datasource, 'rb')) #load(apagar ->cache)
 
     def add (self, key, obj):
         self.__cache[key] = obj
@@ -26,7 +26,7 @@ class DAO (ABC):
         try:
             return self.__cache[key] 
         except KeyError:
-            pass
+            return 0
 
     def remove (self, key):
         try:
