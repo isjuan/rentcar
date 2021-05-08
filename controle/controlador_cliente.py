@@ -2,14 +2,16 @@ from limite.tela_cliente import TelaCliente
 from entidade.cliente import Cliente
 from daos.dao_cliente import ClienteDAO
 
+
 class ControladorCliente:
 
   def __init__(self, controlador_sistema):
     self.__controlador_sistema = controlador_sistema
     #self.__clientes = []
+    self.__dao = ClienteDAO()
     self.__tela_cliente = TelaCliente()
     self.__dao.add(Cliente("n", "t", "e"))
-    self.__dao = ClienteDAO()
+
   
   def l_clientes(self):
     return self.__dao.get_all()
