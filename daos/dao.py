@@ -1,5 +1,5 @@
 import pickle 
-import abc
+from abc import ABC, abstractmethod
 
 class DAO (ABC):
 

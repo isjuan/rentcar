@@ -1,16 +1,18 @@
 from limite.tela_cliente import TelaCliente
 from entidade.cliente import Cliente
+from daos.dao_cliente import ClienteDAO
 
 class ControladorCliente:
 
   def __init__(self, controlador_sistema):
     self.__controlador_sistema = controlador_sistema
-    self.__clientes = []
+    #self.__clientes = []
     self.__tela_cliente = TelaCliente()
-    self.__clientes.append(Cliente("n", "t", "e"))
+    self.__dao.add(Cliente("n", "t", "e"))
+    self.__dao = ClienteDAO()
   
   def l_clientes(self):
-    return self.__clientes
+    return self.__dao.get_all()
 
   def novo(self,cliente, aluguel):
     cliente.novo(aluguel)
@@ -23,7 +25,7 @@ class ControladorCliente:
     lista = []
     if test_none == False:
       nome = lista_nome["nome"]
-      for cliente in self.__clientes:
+      for cliente in self.__dao.get_all():
         if cliente.nome == nome:
           lista = cliente.lista()
     self.__tela_cliente.lista_alugueis(test_none, lista)
@@ -47,13 +49,13 @@ class ControladorCliente:
     verificador = 2
     if test_none == False:
       nome_cliente = dados_cliente["nome"]
-      for cliente in self.__clientes:
+      for cliente in self.__dao.get_all():
         if nome_cliente == cliente.nome:
           verificador = 1
       if verificador == 2:
         verificador = 0
         cliente = Cliente(dados_cliente["nome"], dados_cliente["telefone"], dados_cliente["endereco"])
-        self.__clientes.append(cliente)
+        self.__dao.add(cliente)
     self.__tela_cliente.incluir_cliente_return(verificador)
     
 
