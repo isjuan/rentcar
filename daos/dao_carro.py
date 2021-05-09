@@ -7,8 +7,8 @@ class CarroDAO(DAO):
         super().__init__('carros.pkl')
 
     def add(self, carro: Carro):
-        if (isinstance (carro.nome, int)) and (carro is not None) and isinstance (carro, Carro): 
-            super().add(carro.nome, carro)
+        if (isinstance (carro.placa, int)) and (carro is not None) and isinstance (carro, Carro): 
+            super().add(carro.placa, carro)
 
     def get (self, key: int):
         if isinstance (key, int): 
