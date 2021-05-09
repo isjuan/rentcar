@@ -82,11 +82,9 @@ class ControladorCliente:
   def lista_clientes(self):
     temp = []
     chave = self.__dao.get_all()
-    print (chave)
     for cliente in chave:
       a = [cliente.nome, cliente.telefone, cliente.endereco]
       temp.append(a)
-    print (len(chave))
     self.__tela_cliente.mostrar_cliente(temp)
     
 
