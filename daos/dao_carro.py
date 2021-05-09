@@ -1,12 +1,14 @@
-class ClienteDAO(DAO):
+from daos.dao import DAO
+from entidade.carro import Carro
+
+class CarroDAO(DAO):
 
     def __init__(self):
-        super().__init__ ('carro.pkl')
+        super().__init__('carros.pkl')
 
-    def add(self, cliente: Cliente):
-        if (isinstance (cliente.codigo, int)) and (cliente is not None) \
-                and isinstance (cliente, Cliente): 
-            super().add (cliente.codigo, cliente)
+    def add(self, carro: Carro):
+        if (isinstance (carro.nome, int)) and (carro is not None) and isinstance (carro, Carro): 
+            super().add(carro.nome, carro)
 
     def get (self, key: int):
         if isinstance (key, int): 
