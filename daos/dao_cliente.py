@@ -7,15 +7,15 @@ class ClienteDAO(DAO):
         super().__init__('clientes.pkl')
 
     def add(self, cliente: Cliente):
-        if (isinstance (cliente.nome, int)) and (cliente is not None) and isinstance (cliente, Cliente): #checar "nome" nos outros daos_
+        if (isinstance (cliente.nome, str)) and (cliente is not None) and isinstance (cliente, Cliente): #checar "nome" nos outros daos_
             super().add(cliente.nome, cliente)
 
-    def get (self, key: int):
-        if isinstance (key, int): 
+    def get (self, key: str):
+        if isinstance (key, str): 
             return super().get(key)
 
-    def remove (self, key: int):
-        if isinstance (key, int): 
+    def remove (self, key: str):
+        if isinstance (key, str): 
             return super().remove(key)
 
 

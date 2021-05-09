@@ -7,10 +7,8 @@ class ControladorCliente:
 
   def __init__(self, controlador_sistema):
     self.__controlador_sistema = controlador_sistema
-    #self.__clientes = []
     self.__dao = ClienteDAO()
     self.__tela_cliente = TelaCliente()
-    self.__dao.add(Cliente("n", "t", "e"))
 
   
   def l_clientes(self):
