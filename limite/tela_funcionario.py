@@ -8,11 +8,11 @@ class TelaFuncionario():
 
   def init_components(self):
     layout = [#[sg.Listbox(values=('funcionario 2', 'funcionario3'), size=(30, 3))],
-              [sg.Button('Incluir funcionario', key='1', size=(15, 2)),
-               sg.Button('Excluir funcionario', key='3', size=(15, 2))],
-              [sg.Button('Listar funcionarios', key='2', size=(30, 2))],
-              [sg.Button('Listar alugueis do funcionario', key='4', size=(30, 1))],
-              [sg.Button('<< Retornar <<', key='0', size=(15, 1))]
+              [sg.Button('Incluir funcionario', key='1', size=(15, 2), button_color='#008015'),
+               sg.Button('Excluir funcionario', key='3', size=(15, 2), button_color='#d5001d')],
+              [sg.Button('Listar funcionarios', key='2', size=(32, 2))],
+              [sg.Button('Listar alugueis do funcionario', key='4', size=(32, 2))],
+              [sg.Button('<< Retornar <<', key='0', size=(15, 1), button_color='#500000')]
               ]
     self.__window = sg.Window('Funcionarios').Layout(layout)
 
@@ -26,10 +26,10 @@ class TelaFuncionario():
 
   def dados_cadastrar(self):
     
-    layout= [[sg.Text('Nome:'), sg.InputText(key= 'nome')],
-             [sg.Text('Endereco:'), sg.InputText(key='endereco')],
-             [sg.Text('Telefone'), sg.InputText(key='telefone')],
-             [sg.Submit('Cadastrar'), sg.Cancel('Cancelar')]
+    layout= [[sg.Text('Nome:', size=(8, 1)), sg.InputText(key= 'nome')],
+             [sg.Text('Endereco:', size=(8, 1)), sg.InputText(key='endereco')],
+             [sg.Text('Telefone', size=(8, 1)), sg.InputText(key='telefone')],
+             [sg.Cancel('<< Retornar <<', button_color='#500000'), sg.Submit('Cadastrar', button_color='#008000')]
     ]
     self.__window = sg.Window('Cadastrar funcionario').Layout(layout)
 
@@ -58,15 +58,13 @@ class TelaFuncionario():
     self.__window.Read()
     self.close()
 
-
-
   def close(self):
     self.__window.close()
 
   def retorna_funcionario(self):
     layout= [[sg.Text('Qual o nome do funcionario?')],
-             [sg.InputText(key='nome')],
-             [sg.Submit('Enter'), sg.Cancel('Cancelar')]
+             [sg.InputText(key='nome'), sg.Submit('OK', size=(3, 0), button_color='#008000')],
+             [sg.Cancel('<< Retornar <<', button_color='#500000')]
     ]
 
     self.__window = sg.Window('Selecionar funcionario').Layout(layout)
@@ -129,7 +127,7 @@ class TelaFuncionario():
         contador = contador + 1 
     else:
       layout.append([sg.Text("Nenhum funcionario cadastrado!")])
-    layout.append([sg.Button('<< Retornar <<', key= self.close(), size=(15, 1))])
+    layout.append([sg.Button('<< Retornar <<', key= self.close(), size=(15, 1), button_color='#500000')])
     self.__window = sg.Window('Listar funcionarios').Layout(layout)
     botao, valores = self.__window.Read()
     self.close()

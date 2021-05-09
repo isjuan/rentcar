@@ -7,10 +7,10 @@ class TelaAluguel():
     self.init_components()
 
   def init_components(self):
-    layout = [[sg.Button('Criar aluguel', key='1', size=(15, 2)),
-               sg.Button('Excluir aluguel', key='3', size=(15, 2))],
-              [sg.Button('Listar alugueis', key='2', size=(30, 1))],
-              [sg.Button('<< Retornar <<', key='0', size=(15, 1))]
+    layout = [[sg.Button('Criar aluguel', key='1', size=(15, 2), button_color='#008015'),
+               sg.Button('Excluir aluguel', key='3', size=(15, 2), button_color='#d5001d')],
+              [sg.Button('Listar alugueis', key='2', size=(32, 2))],
+              [sg.Button('<< Retornar <<', key='0', size=(15, 1), button_color='#500000')]
               ]
     self.__window = sg.Window('Aluguel').Layout(layout)
 
@@ -30,11 +30,11 @@ class TelaAluguel():
 
   def dados_cadastrar(self):
 
-    layout= [[sg.Text('Placa do carro:'), sg.InputText(key= 'placa')],
-             [sg.Text('Nome do cliente:'), sg.InputText(key='nome_cliente')],
-             [sg.Text('Nome do funcionário:'), sg.InputText(key='nome_funcionario')],
-             [sg.Text('Código de registro(único)'), sg.InputText(key='data')],
-             [sg.Submit('Registrar Aluguel'), sg.Cancel('Cancelar')]
+    layout= [[sg.Text('Placa do carro:', size=(18, 1)), sg.InputText(key= 'placa')],
+             [sg.Text('Nome do cliente:', size=(18, 1)), sg.InputText(key='nome_cliente')],
+             [sg.Text('Nome do funcionário:', size=(18, 1)), sg.InputText(key='nome_funcionario')],
+             [sg.Text('Código de registro(único)', size=(18, 1)), sg.InputText(key='data')],
+             [sg.Cancel('<< Retornar <<', button_color='#500000'), sg.Submit('Registrar Aluguel', button_color='#008000') ]
     ]
     self.__window = sg.Window('Cadastrar funcionario').Layout(layout)
 
@@ -62,7 +62,7 @@ class TelaAluguel():
         contador = contador + 1
     else:
       layout.append([sg.Text("Sem alugueis ativos!")])
-    layout.append([sg.Button('<< Retornar <<', key= self.close(), size=(15, 1))])
+    layout.append([sg.Button('<< Retornar <<', key= self.close(), size=(15, 1), button_color='#500000')])
     self.__window = sg.Window('Listar Alugueisa').Layout(layout)
     botao, valores = self.__window.Read()
     self.close()
@@ -70,8 +70,8 @@ class TelaAluguel():
 
   def exclui_aluguel(self):
     layout = [[sg.Text('"Qual o codigo do aluguel?"')],
-             [sg.InputText(key='codigo')],
-             [sg.Submit('Enter'),sg.Button('Cancelar', key=self.close())]]
+             [sg.InputText(key='codigo', size=(20,0)), sg.Submit('OK', size=(3, 0), button_color='#008000')],
+             [sg.Button('<< Retornar <<', button_color='#500000', key=self.close())]]
     self.__window = sg.Window('Selecionar carro').Layout(layout)
     botao, valores = self.__window.Read()
     test_none = False

@@ -7,11 +7,11 @@ class TelaCarro():
     self.init_components()
 
   def init_components(self):
-    layout = [[sg.Button('Incluir carro', key='1', size=(15, 2)),
-               sg.Button('Excluir carro', key='3', size=(15, 2))],
-              [sg.Button('Listar carros', key='2', size=(30, 2))],
-              [sg.Button('Listar aluguel do carro', key='4', size=(30, 2))],
-              [sg.Button('<< Retornar <<', key='0', size=(15, 1))]
+    layout = [[sg.Button('Incluir carro', key='1', size=(15, 2), button_color='#008015'),
+               sg.Button('Excluir carro', key='3', size=(15, 2), button_color='#d5001d')],
+              [sg.Button('Listar carros', key='2', size=(32, 2))],
+              [sg.Button('Listar aluguel do carro', key='4', size=(32, 2))],
+              [sg.Button('<< Retornar <<', key='0', size=(15, 1), button_color='#500000')]
               ]
     self.__window = sg.Window('Carros').Layout(layout)
 
@@ -25,10 +25,10 @@ class TelaCarro():
 
   def dados_cadastrar(self):
     
-    layout= [[sg.Text('Placa:'), sg.InputText(key= 'placa')],
-             [sg.Text('Modelo:'), sg.InputText(key='modelo')],
-             [sg.Text('Cor'), sg.InputText(key='cor')],
-             [sg.Submit('Cadastrar'), sg.Cancel('Cancelar')]
+    layout= [[sg.Text('Placa:', size=(5, 1)), sg.InputText(key= 'placa')],
+             [sg.Text('Modelo:', size=(5, 1)), sg.InputText(key='modelo')],
+             [sg.Text('Cor', size=(5, 1)), sg.InputText(key='cor')],
+             [sg.Cancel('<< Retornar <<', button_color='#500000'), sg.Submit('Cadastrar', button_color='#008000')]
     ]
     self.__window = sg.Window('Cadastrar carro').Layout(layout)
 
@@ -64,8 +64,8 @@ class TelaCarro():
 
   def retorna_carro(self):
     layout= [[sg.Text('Qual o placa do carro?')],
-             [sg.InputText(key='placa')],
-             [sg.Submit('Enter'), sg.Cancel('Cancelar')]
+             [sg.InputText(key='placa'), sg.Submit('OK', size=(3, 0), button_color='#008000')],
+             [sg.Cancel('<< Retornar <<', button_color='#500000')]
     ]
 
     self.__window = sg.Window('Selecionar carro').Layout(layout)
@@ -106,7 +106,7 @@ class TelaCarro():
         contador = contador + 1 
     else:
       layout.append([sg.Text("Nenhum funcionario cadastrado!")])
-    layout.append([sg.Button('<< Retornar <<', key= self.close(), size=(15, 1))])
+    layout.append([sg.Button('<< Retornar <<', key= self.close(), size=(15, 1), button_color='#500000')])
 
     self.__window = sg.Window('Listar carros').Layout(layout)
     botao, valores = self.__window.Read()

@@ -7,11 +7,11 @@ class TelaCliente():
     self.init_components()
 
   def init_components(self):
-    layout = [[sg.Button('Incluir cliente', key='1', size=(15, 2)),
-               sg.Button('Excluir cliente', key='3', size=(15, 2))],
-              [sg.Button('Listar clientes', key='2', size=(30, 2))],
-              [sg.Button('Listar alugueis do cliente', key='4', size=(30, 1))],
-              [sg.Button('<< Retornar <<', key='0', size=(15, 1))]
+    layout = [[sg.Button('Incluir cliente', key='1', size=(15, 2), button_color='#008015'),
+               sg.Button('Excluir cliente', key='3', size=(15, 2), button_color='#d5001d')],
+              [sg.Button('Listar clientes', key='2', size=(32, 2))],
+              [sg.Button('Listar alugueis do cliente', key='4', size=(32, 2))],
+              [sg.Button('<< Retornar <<', key='0', size=(15, 1), button_color='#500000')]
               ]
     self.__window = sg.Window('Clientes').Layout(layout)
 
@@ -27,10 +27,10 @@ class TelaCliente():
 
   def dados_cadastrar(self):
     
-    layout= [[sg.Text('Nome:'), sg.InputText(key= 'nome')],
-             [sg.Text('Endereco:'), sg.InputText(key='endereco')],
-             [sg.Text('Telefone'), sg.InputText(key='telefone')],
-             [sg.Submit('Cadastrar'), sg.Cancel('Cancelar')]
+    layout= [[sg.Text('Nome:', size=(8, 1)), sg.InputText(key= 'nome')],
+             [sg.Text('Endereco:', size=(8, 1)), sg.InputText(key='endereco')],
+             [sg.Text('Telefone', size=(8, 1)), sg.InputText(key='telefone')],
+             [sg.Cancel('<< Retornar <<', button_color='#500000'), sg.Submit('Cadastrar', button_color='#008000')]
     ]
     self.__window = sg.Window('Cadastrar cliente').Layout(layout)
 
@@ -47,14 +47,14 @@ class TelaCliente():
 
   def incluir_cliente_return(self, verificador):
     if verificador == 1:   
-      layout= [[sg.Text('Ja existe um cliente com esse nome!')],
+      layout= [[sg.Text('Ja existe um cliente com esse nome!', justification='center')],
                [sg.Button('OK', key=self.close(), size=(5, 1))]]
     if verificador == 0:
-      layout= [[sg.Text('Cliente cadastrado!')],
+      layout= [[sg.Text('Cliente cadastrado!', justification='center')],
                [sg.Button('OK', key=self.close(), size=(5, 1))]
                ]
     if verificador == 2:
-      layout= [[sg.Text('Operacao cancelada. Retornando a Tela Cliente.')],
+      layout= [[sg.Text('Operacao cancelada. Retornando a Tela Cliente.', justification='center')],
                [sg.Button('OK', key=self.close(), size=(5, 1))]
                ]
   
@@ -68,9 +68,9 @@ class TelaCliente():
     self.__window.close()
 
   def retorna_cliente(self):
-    layout= [[sg.Text('Qual o nome do cliente?')],
-             [sg.InputText(key='nome')],
-             [sg.Submit('Enter'), sg.Cancel('Cancelar')]
+    layout= [[sg.Text('Qual o nome do cliente?', justification='center')],
+             [sg.InputText(key='nome', size=(20,0)), sg.Submit('OK', size=(3, 0), button_color='#008000')],
+             [sg.Cancel('<< Retornar <<', button_color='#500000')]
     ]
 
     self.__window = sg.Window('Selecionar cliente').Layout(layout)
@@ -132,7 +132,7 @@ class TelaCliente():
         contador = contador + 1 
     else:
       layout.append([sg.Text("Nenhum funcionario cadastrado!")])
-    layout.append([sg.Button('<< Retornar <<', key= self.close(), size=(15, 1))])
+    layout.append([sg.Button('<< Retornar <<', key= self.close(), size=(15, 1), button_color='#500000')])
     self.__window = sg.Window('Listar clientes').Layout(layout)
     botao, valores = self.__window.Read()
     self.close()
