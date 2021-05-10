@@ -1,6 +1,6 @@
 from limite.tela_aluguel import TelaAluguel
 from entidade.aluguel import Aluguel
-
+from daos.dao_aluguel import AluguelDAO
 
 class ControladorAluguel:   
 
@@ -9,10 +9,9 @@ class ControladorAluguel:
     self.__controlador_cliente = controlador_cliente
     self.__controlador_funcionario = controlador_funcionario
     self.__controlador_carro = controlador_carro
-    self.__alugueis = []
+    self.__dao = AluguelDAO()
+    #self.__alugueis = []
     self.__tela_aluguel = TelaAluguel()
-
-
 
 
   def incluir_aluguel(self):
@@ -43,13 +42,12 @@ class ControladorAluguel:
           self.__controlador_cliente.novo(cliente_certo, aluguel)
           self.__controlador_funcionario.novo(funcionario_certo, aluguel)
 
-          self.__alugueis.append(aluguel)
+          self.__dao.add(aluguel)
           aluguel_verificador = True
     if test_none == False: 
       self.__tela_aluguel.cadastro(aluguel_verificador)
       if aluguel_verificador == False:
         self.aluguel_verificadores(cliente_verificador, funcionario_verificador, carro_verificador,codigo_verificador)
-
 
 
 
@@ -60,7 +58,7 @@ class ControladorAluguel:
   def codigo_aluguel(self, identificador):
     codigo_verificador = 0
     codigo_certo = 0
-    for codigo in self.__alugueis:
+    for codigo in self.__dao.get_all():
       if codigo.data == identificador:
         codigo_verificador = codigo_verificador + 1
     if codigo_verificador == 0: 
@@ -70,7 +68,7 @@ class ControladorAluguel:
 
   def lista_alugueis(self):
     dados_aluguel = []
-    for aluguel in self.__alugueis:
+    for aluguel in self.__dao.get_all():
       dados_aluguel.append({"carro": aluguel.carro.placa, "cliente": aluguel.cliente.nome, "funcionario": aluguel.funcionario.nome, "data": aluguel.data})
     self.__tela_aluguel.mostra_aluguel(dados_aluguel)
 
@@ -78,7 +76,7 @@ class ControladorAluguel:
     codigo, test_none = self.__tela_aluguel.exclui_aluguel()
     verificador = False
     if test_none == False:
-      for aluguel in self.__alugueis:
+      for aluguel in self.__dao.get_all():
         if aluguel.data == codigo:
           verificador = True
           self.__controlador_carro.aluga(aluguel.carro,aluguel, False)
