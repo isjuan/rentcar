@@ -22,6 +22,7 @@ class ControladorCarro:
 
   def lista_alugueis(self):
     lista_placa, test_none = self.__tela_carro.retorna_carro()
+    lista = []
     if test_none == False:
       placa = lista_placa["placa"]
       carro = self.__dao.get(placa)
