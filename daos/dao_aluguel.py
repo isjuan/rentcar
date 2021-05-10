@@ -7,13 +7,13 @@ class AluguelDAO(DAO):
         super().__init__('alugueis.pkl')
 
     def add(self, aluguel: Aluguel):
-        if (isinstance (aluguel.data, int)) and (aluguel is not None) and isinstance (aluguel, Aluguel): 
+        if (isinstance (aluguel.data, str)) and (aluguel is not None) and isinstance (aluguel, Aluguel):
             super().add(aluguel.data, aluguel)
 
-    def get (self, key: int):
-        if isinstance (key, int): 
+    def get (self, key: str):
+        if isinstance (key, str):
             return super().get(key)
 
-    def remove (self, key: int):
-        if isinstance (key, int): 
+    def remove (self, key: str):
+        if isinstance (key, str):
             return super().remove(key)

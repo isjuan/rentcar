@@ -83,7 +83,7 @@ class ControladorAluguel:
           self.__controlador_cliente.remove(aluguel.cliente, aluguel)
           self.__controlador_funcionario.remove(aluguel.funcionario, aluguel)
 
-          self.__alugueis.remove(aluguel)
+          self.__controlador_funcionario.remove(aluguel.funcionario, aluguel)
           self.__tela_aluguel.exclui_aluguel_return(verificador)
         
       if verificador == False:

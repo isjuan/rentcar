@@ -13,5 +13,3 @@ class Funcionario(Pessoa):
 
     def lista(self):
         return self.__alugueis
-
-    
