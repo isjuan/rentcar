@@ -16,9 +16,13 @@ class ControladorFuncionario:
 
   def novo(self,funcionario, aluguel):
     funcionario.novo(aluguel)
+    self.atualiza_obj(funcionario)
+
 
   def remove(self,funcionario, aluguel):
     funcionario.remove(aluguel)
+    self.atualiza_obj(funcionario)
+
   
   def lista_alugueis(self):
     lista_nome, test_none = self.__tela_funcionario.retorna_funcionario()
@@ -39,6 +43,10 @@ class ControladorFuncionario:
     if funcionario_verificador == False:
       funcionario_certo = 0
     return funcionario_certo, funcionario_verificador
+
+  def atualiza_obj(self, funcionario: Funcionario):
+    self.__dao.remove(funcionario.nome)
+    self.__dao.add(funcionario)
 
 
 

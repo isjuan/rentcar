@@ -122,7 +122,8 @@ class TelaCarro():
       else:        
         layout= [[sg.Text("O aluguel desse carro e:")]]          
         layout.append([sg.Text("Nome do cliente:"), sg.Text(lista[0].cliente.nome), sg.Text("Nome do funcionario:"),sg.Text(lista[0].funcionario.nome), sg.Text("Codigo do aluguel:"),sg.Text(lista[0].data)])   
-    
+        layout.append([sg.Button('OK', key=self.close(), size=(5, 1))])
+        
       self.__window = sg.Window('Listar alugueis').Layout(layout)
       botao, valores = self.__window.Read()
       self.close()

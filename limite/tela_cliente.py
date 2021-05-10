@@ -117,7 +117,7 @@ class TelaCliente():
 
           layout.append([sg.Text("Placa do carro:"), sg.Text(i.carro.placa), sg.Text("Funcionario:"),sg.Text(i.funcionario.nome), sg.Text("Codigo:"),sg.Text(i.data)])   
 
-          
+        layout.append([sg.Button('OK', key=self.close(), size=(5, 1))])
       self.__window = sg.Window('Listar alugueis').Layout(layout)
       botao, valores = self.__window.Read()
       self.close()

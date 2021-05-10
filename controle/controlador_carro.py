@@ -9,7 +9,6 @@ class ControladorCarro:
     self.__controlador_sistema = controlador_sistema
     self.__dao = CarroDAO()
     self.__tela_carro = TelaCarro()
-    self.__dao.add(Carro("n", "t", "e"))
   
   def l_carros(self):
     return self.__dao.get_all()
@@ -91,6 +90,7 @@ class ControladorCarro:
   
   def aluga(self,car, aluguel, r):
     car.aluga(aluguel,r)
+    self.atualiza_obj(car)
 
   def alugado(self, carro):
     return carro.alugado()
@@ -100,6 +100,10 @@ class ControladorCarro:
     continua = True
     while continua:
       lista_opcoes[self.__tela_carro.tela_opcoes()]()
+
+  def atualiza_obj(self, carro: Carro):
+    self.__dao.remove(carro.placa)
+    self.__dao.add(carro)
 
 
 '''

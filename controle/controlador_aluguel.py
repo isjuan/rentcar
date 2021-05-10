@@ -10,7 +10,6 @@ class ControladorAluguel:
     self.__controlador_funcionario = controlador_funcionario
     self.__controlador_carro = controlador_carro
     self.__dao = AluguelDAO()
-    #self.__alugueis = []
     self.__tela_aluguel = TelaAluguel()
 
 
@@ -76,18 +75,15 @@ class ControladorAluguel:
     codigo, test_none = self.__tela_aluguel.exclui_aluguel()
     verificador = False
     if test_none == False:
-      for aluguel in self.__dao.get_all():
-        if aluguel.data == codigo:
-          verificador = True
-          self.__controlador_carro.aluga(aluguel.carro,aluguel, False)
-          self.__controlador_cliente.remove(aluguel.cliente, aluguel)
-          self.__controlador_funcionario.remove(aluguel.funcionario, aluguel)
-
-          self.__controlador_funcionario.remove(aluguel.funcionario, aluguel)
-          self.__tela_aluguel.exclui_aluguel_return(verificador)
-        
-      if verificador == False:
-          self.__tela_aluguel.exclui_aluguel_return(verificador)
+      aluguel = self.__dao.get(codigo)
+      if type(aluguel) == Aluguel:     
+        verificador = True
+        self.__controlador_carro.aluga(aluguel.carro,aluguel, False)
+        self.__controlador_cliente.remove(aluguel.cliente, aluguel)
+        self.__controlador_funcionario.remove(aluguel.funcionario, aluguel)
+        self.__dao.remove(aluguel.data)
+          
+      self.__tela_aluguel.exclui_aluguel_return(verificador)
 
   def retorna_tela_principal(self):
     self.__controlador_sistema.inicializa_sistema()

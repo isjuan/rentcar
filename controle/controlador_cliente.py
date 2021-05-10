@@ -16,10 +16,17 @@ class ControladorCliente:
 
   def novo(self,cliente, aluguel):
     cliente.novo(aluguel)
+    self.atualiza_obj(cliente)
+
 
   def remove(self,cliente, aluguel):
     cliente.remove(aluguel)
-  
+    self.atualiza_obj(cliente)
+
+  def atualiza_obj(self, cliente: Cliente):
+    self.__dao.remove(cliente.nome)
+    self.__dao.add(cliente)
+
   def lista_alugueis(self):
     lista_nome, test_none = self.__tela_cliente.retorna_cliente()
     lista = []
