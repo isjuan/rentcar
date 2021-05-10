@@ -35,7 +35,7 @@ class TelaCarro():
     botao, valores = self.__window.Read()
     self.close()
     test_none = False
-    if botao == None or botao == 'Cancelar' or valores['placa'] == None or valores['placa'] == '':
+    if botao == None or botao == '<< Retornar <<' or valores['placa'] == None or valores['placa'] == '':
 
       test_none = True
     return{"placa": valores['placa'], "modelo": valores['modelo'], "cor": valores['cor']}, test_none
@@ -72,7 +72,7 @@ class TelaCarro():
     botao, valores = self.__window.Read()
     self.close()
     test_none = False
-    if botao == None or botao == 'Cancelar' or valores['placa'] == None:
+    if botao == None or botao == '<< Retornar <<' or valores['placa'] == None:
 
       test_none = True
     return {"placa": valores['placa']}, test_none

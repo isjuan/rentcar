@@ -37,7 +37,7 @@ class TelaCliente():
     botao, valores = self.__window.Read()
     self.close()
     test_none = False
-    if botao == None or botao == 'Cancelar' or valores['nome'] == None or valores['nome'] == '':
+    if botao == None or botao == '<< Retornar <<' or valores['nome'] == None or valores['nome'] == '':
 
       test_none = True
     return{"nome": valores['nome'], "telefone": valores['telefone'], "endereco": valores['endereco']}, test_none
@@ -77,7 +77,7 @@ class TelaCliente():
     botao, valores = self.__window.Read()
     self.close()
     test_none = False
-    if botao == None or botao == 'Cancelar' or valores['nome'] == None:
+    if botao == None or botao == '<< Retornar <<' or valores['nome'] == None:
 
       test_none = True
     return {"nome": valores['nome']}, test_none

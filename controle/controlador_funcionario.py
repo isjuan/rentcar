@@ -62,11 +62,9 @@ class ControladorFuncionario:
   def lista_funcionarios(self):
     temp = []
     chave = self.__dao.get_all()
-    print (chave)
     for funcionario in chave:
       a = [funcionario.nome, funcionario.telefone, funcionario.endereco]
       temp.append(a)
-    print (len(chave))
     self.__tela_funcionario.mostrar_funcionario(temp)
     
 

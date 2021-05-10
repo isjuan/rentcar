@@ -41,7 +41,7 @@ class TelaAluguel():
     botao, valores = self.__window.Read()
     self.close()
     test_none = False
-    if botao == None or botao == 'Cancelar' or valores['data'] == None or valores['data'] == '':
+    if botao == None or botao == '<< Retornar <<' or valores['data'] == None or valores['data'] == '':
       test_none = True
 
     return {"carro": valores['placa'], "cliente": valores['nome_cliente'], "funcionario": valores['nome_funcionario'], "data": valores['data']}, test_none
@@ -75,7 +75,7 @@ class TelaAluguel():
     self.__window = sg.Window('Selecionar carro').Layout(layout)
     botao, valores = self.__window.Read()
     test_none = False
-    if botao == None or botao == 'Cancelar' or valores['codigo'] == None or valores['codigo'] == '':
+    if botao == None or botao == '<< Retornar <<' or valores['codigo'] == None or valores['codigo'] == '':
       test_none = True
     self.close()
     return valores['codigo'], test_none

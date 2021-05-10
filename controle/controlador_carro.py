@@ -37,7 +37,7 @@ class ControladorCarro:
       carro_verificador = 2
       if carro.alugado() == True:
         carro_verificador = 1
-        carro_ = 0
+        carro = 0
     if carro_verificador != 2:
       carro = 0
     return carro, carro_verificador
@@ -80,7 +80,7 @@ class ControladorCarro:
       if type(carro) == Carro:
         if self.alugado(carro) == False:
           verificador = 2
-          self.__dao.remove(carro)
+          self.__dao.remove(placa)
         if self.alugado(carro) == True:
           verificador = 1
     self.__tela_carro.exclui_carro_return(verificador)
